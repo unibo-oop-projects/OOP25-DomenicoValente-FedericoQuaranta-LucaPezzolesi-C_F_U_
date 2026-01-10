@@ -102,7 +102,7 @@ public class RoomTemplate implements Room{
      */
     private boolean canPlaceDoor(final Position pos) {
         if(getElementNumber(RoomCellsValues.DOOR) < MAXIMUM_DOORS_COUNT &&
-            this.grid.get(pos).equals(RoomCellsValues.WALL)
+            this.grid.get(pos) == RoomCellsValues.WALL
         ) {
             return true;
         }
@@ -116,7 +116,7 @@ public class RoomTemplate implements Room{
      */
     private boolean canPlaceEnigma(final Position pos) {
         if(getElementNumber(RoomCellsValues.ENIGMA) < MAXIMUM_ENIGMAS_COUNT &&
-            (this.grid.get(pos).equals(RoomCellsValues.WALL) || this.grid.get(pos).equals(RoomCellsValues.FREE))
+            (this.grid.get(pos) == RoomCellsValues.WALL || this.grid.get(pos) == RoomCellsValues.FREE)
         ) {
             return true;
         }
