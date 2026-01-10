@@ -11,7 +11,7 @@ public interface Door {
      * gets the id of this door
      * @return the id
      */
-    int getId();
+    String getId();
 
     /**
      * tells if the door is open or not

@@ -1,5 +1,7 @@
 package it.unibo.api.rooms;
 
+import java.util.Map;
+
 import it.unibo.api.Position;
 import it.unibo.api.doors.Door;
 import it.unibo.api.enigmas.Enigma;
@@ -29,4 +31,14 @@ public interface Room {
      * @return the position of that enigm
      */
     Position getEnigmaPosition(Enigma enigm);
+
+    /**
+     * generates a Room implementation with the given layout
+     * @param size the size of the room (square) 
+     * @param doorMap a map of every door position
+     * @param enigmaMap a map of every enigma position
+     */
+    public void setLayout(final int size, 
+        final Map<Position, Door> doorMap, final Map<Position, Enigma> enigmaMap);
+
 }
