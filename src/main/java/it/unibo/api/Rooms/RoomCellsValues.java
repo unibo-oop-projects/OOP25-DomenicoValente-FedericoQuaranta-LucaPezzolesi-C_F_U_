@@ -17,7 +17,7 @@ public enum RoomCellsValues {
     /** door */
     DOOR,
 
-    /** enigm */
-    ENIGM;
+    /** enigma */
+    ENIGMA;
 
 }
