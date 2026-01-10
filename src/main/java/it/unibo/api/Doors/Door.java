@@ -25,4 +25,11 @@ public interface Door {
      */
     Room getDstRoom();
 
+    /**
+     * opens the door. 
+     * once a door is open, it cannot be closed anymore
+     * @param b {@code true} if the door should open, {@code false} otherwise
+     */
+    void setOpen(boolean b);
+
 }
