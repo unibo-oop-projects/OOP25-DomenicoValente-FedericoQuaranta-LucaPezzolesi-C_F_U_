@@ -10,9 +10,8 @@ public interface RoomManager {
     /**
      * unloads the current room and loads the next
      * @param nextRoom the room to load
-     * @return {@code true} if the operation succeded, {@code false} otherwise
      */
-    boolean enterNextRoom(Room nextRoom);
+    void enterNextRoom(Room nextRoom);
 
     /**
      * gets the current room
