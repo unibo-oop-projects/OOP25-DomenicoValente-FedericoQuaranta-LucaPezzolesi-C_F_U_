@@ -32,8 +32,8 @@ public class RoomManagerImpl implements RoomManager{
     }
 
     @Override
-    public boolean isPlayerColliding(final Position nexPosition) {
-        if(currentRoom.getCellContent(nexPosition) == RoomCellsValues.FREE){
+    public boolean isPlayerColliding(final Position nextPosition) {
+        if(currentRoom.getCellContent(nextPosition) == RoomCellsValues.FREE){
             return true;
         }else{
             return false;
@@ -41,31 +41,42 @@ public class RoomManagerImpl implements RoomManager{
     }
 
     @Override
-    public void computeMove(boolean canMove, final Position nexPosition) {
+    public void computeMove(boolean canMove, final Position nextPosition) {
         if(canMove){
-            this.player.move(nexPosition);
+            this.player.move(nextPosition);
         }
     }
 
     @Override
-    public boolean isEnteringAnEvent(final Position nexPosition) {
-        if(this.currentRoom.getCellContent(nexPosition) == RoomCellsValues.ENIGMA){
-            enterEnigma();
+    public boolean isEnteringAnEvent(final Position nextPosition) {
+        if(this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.ENIGMA){
+            enterEnigma(nextPosition);
             return true;
-        }else if(this.currentRoom.getCellContent(nexPosition) == RoomCellsValues.DOOR){
-            enterDoor();
+        }else if(this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.DOOR){
+            enterDoor(nextPosition);
             return true;
         }else{
             return false;
         }
     }
 
-    private void enterDoor(){
-        //TODO
+    /**
+     * get the question and the possible options to solve the enigma
+     * @param posEnigma to get the obj enigma
+     */
+    private void enterEnigma(final Position posEnigma){
+        this.currentRoom.getEnigma(posEnigma).getQuestion();
+        this.currentRoom.getEnigma(posEnigma).getOptions();
     }
 
-    private void enterEnigma(){ 
-        //TODO
+    /**
+     * if the door is open enter to the next door
+     * @param posDoor to ghet the obj door
+     */
+    private void enterDoor(final Position posDoor){ 
+        if(this.currentRoom.getDoor(posDoor).isOpen()){
+                enterNextRoom(this.currentRoom.getDoor(posDoor).getDstRoom());
+        }
     }
 }
 

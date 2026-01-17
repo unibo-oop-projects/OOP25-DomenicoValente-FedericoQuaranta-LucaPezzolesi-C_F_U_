@@ -140,9 +140,7 @@ public class RoomTemplate implements Room{
     }
 
     @Override
-    public void setLayout(final int size, 
-        final Map<Position, Door> doorMap, final Map<Position, Enigma> enigmaMap
-        ) {
+    public void setLayout(final int size, final Map<Position, Door> doorMap, final Map<Position, Enigma> enigmaMap) {
             if(size <= MAXIMUM_SIZE && 
                 doorMap.size() <= (MAXIMUM_DOORS_COUNT - getElementNumber(RoomCellsValues.DOOR)) &&
                 enigmaMap.size() <= (MAXIMUM_ENIGMAS_COUNT - getElementNumber(RoomCellsValues.ENIGMA))
