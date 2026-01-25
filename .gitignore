@@ -13,5 +13,8 @@ bin/
 .settings/
 .classpath
 
-#ignore vscode directory
+# Ignore vscode directory
 .vscode/*
+
+# Ignore .yaml save files
+enigmas.yml
