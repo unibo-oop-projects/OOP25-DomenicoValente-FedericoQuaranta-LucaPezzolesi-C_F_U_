@@ -1,14 +1,24 @@
 package it.unibo.core;
 
+import it.unibo.api.rooms.RoomManager;
+import it.unibo.input.Command;
+import it.unibo.input.Controller;
+import it.unibo.input.StopMovement;
+
 /**
  * simple game engine containing the main loop
  */
-public class GameEngine {
+public class GameEngine implements Controller {
+
+    private Command currentCommand;
+    private RoomManager model;
 
     /**
      * basic constructor
      */
-    public GameEngine() { }
+    public GameEngine() {
+        this.currentCommand = new StopMovement();
+     }
 
     /**
      * main game loop
@@ -73,7 +83,13 @@ public class GameEngine {
      * processes the movement based on the input and the deltaTime
      */
     private void processInput() {
-        //TO DO
-        throw new IllegalStateException("method not implemented yet");   
+        if (currentCommand != null){
+			currentCommand.execute(model);
+		}  
+    }
+
+    @Override
+    public void catchCommand(Command cmd) {
+        this.currentCommand = cmd;
     }
 }
