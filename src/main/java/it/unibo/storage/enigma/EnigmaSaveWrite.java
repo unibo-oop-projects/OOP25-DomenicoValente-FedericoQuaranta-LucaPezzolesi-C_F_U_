@@ -46,9 +46,20 @@ public class EnigmaSaveWrite {
      * writes on the .yaml file the new enigma data
      */
     public void writeOnFile() {        
-        try (final FileWriter pw = new FileWriter(filePath)) {            
-            Yaml yamlFile = new Yaml();
-            yamlFile.dump(this.enigmas, pw);
+        try (final FileWriter fw = new FileWriter(filePath)) {      
+            final Yaml yamlFile = new Yaml();      
+            yamlFile.dump(this.enigmas, fw);
+        } catch (final IOException excep) {
+            excep.printStackTrace();
+        }
+    }
+
+    /**
+     * erases all informations saved in {@code enigmas.yml}
+     */
+    public void eraseSave() {
+        try (final FileWriter fw = new FileWriter(filePath)) {            
+            fw.write("");
         } catch (final IOException excep) {
             excep.printStackTrace();
         }

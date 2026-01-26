@@ -41,6 +41,8 @@ public class TestFileEnigmas {
 
         assertEquals(enigmas.get(0), new EnigmaTemplate("test enigma 1", false,  "test question 1",
             List.of("wrong answ 1", "wrong answ 2", "correct answ"), "correct answ"));
+
+        this.fileWriter.eraseSave();
     }
 
     @Test
