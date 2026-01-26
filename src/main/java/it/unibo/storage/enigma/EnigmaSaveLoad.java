@@ -6,6 +6,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import org.yaml.snakeyaml.inspector.TagInspector;
 
 import it.unibo.api.enigmas.Enigma;
+import it.unibo.core.GameSettings;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -16,8 +17,6 @@ import java.util.List;
 * enigmas loading system
  */
 public class EnigmaSaveLoad {
-
-    private final static String filePath = "./src/main/resources/enigmas.yml";
 
     List<Enigma> enigmas = new ArrayList<>();
     
@@ -34,7 +33,7 @@ public class EnigmaSaveLoad {
         final TagInspector tagInsp = t -> t.getClassName().startsWith("it.unibo");
         loadOpt.setTagInspector(tagInsp);
 
-        try(final InputStream fis = new FileInputStream(filePath)) {
+        try(final InputStream fis = new FileInputStream(GameSettings.YAML_FILES_DEFAULT_PATH.getValue())) {
         final Yaml yamlFile = new Yaml(new Constructor(List.class, loadOpt));
             enigmas = yamlFile.load(fis);
         } catch (final Exception excep) {
