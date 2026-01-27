@@ -5,11 +5,23 @@ import it.unibo.api.rooms.Room;
 
 /**
  * implementation of {@link Door}
+ * implements {@link java.io.Serializable}
  */
 public class DoorImpl implements Door, java.io.Serializable {
 
+     /**
+     * The id of the door
+     */
     private final String id;
+
+     /**
+     * The destination room
+     */
     private final Room dstRoom;
+
+     /**
+     * indicates if the door is open
+     */
     private boolean open;
 
     /**

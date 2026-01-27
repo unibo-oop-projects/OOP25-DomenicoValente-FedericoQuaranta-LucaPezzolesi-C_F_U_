@@ -7,15 +7,38 @@ import it.unibo.api.enigmas.Enigma;
 
 /**
  * an implementation of {@link Enigma}
+ * implements {@link java.io.Serializable}
  */
 public class EnigmaTemplate implements Enigma, java.io.Serializable {
 
+    /**
+     * The enigma id
+     */
     private String id;
+
+    /**
+     * Indicate if it is complete
+     */
     private boolean completed;
+    
+    /**
+     * Indicate if there is a key inside
+     */
     private boolean keyInside;
 
+    /**
+     * The question
+     */
     private String question;
+
+    /**
+     * The correct option
+     */
     private String correctOption;
+
+    /**
+     * The options
+     */
     private List<String> options;
 
     /**

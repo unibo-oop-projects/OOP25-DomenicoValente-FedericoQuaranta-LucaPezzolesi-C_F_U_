@@ -8,10 +8,18 @@ import it.unibo.api.rooms.RoomManager;
 
 /**
  * implementation of {@link RoomManager} 
+ * this class also implements {@link java.io.Serializable}
  */
 public class RoomManagerImpl implements RoomManager, java.io.Serializable {
 
+    /**
+     * The player managed by this RoomManager
+     */
     private final Player player;
+
+     /**
+     * The current room where the player is located
+     */
     private Room currentRoom;
 
     /**

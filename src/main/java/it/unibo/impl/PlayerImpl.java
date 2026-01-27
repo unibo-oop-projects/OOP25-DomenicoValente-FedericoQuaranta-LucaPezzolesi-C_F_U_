@@ -6,9 +6,18 @@ import it.unibo.api.player.Player;
 
 /**
  * implementation of {@link Player}
+ * implements {@link java.io.Serializable}
  */
 public class PlayerImpl implements Player, java.io.Serializable {
+
+     /**
+     * The current player position
+     */
     private Position position;
+
+     /**
+     * The score of the player
+     */
     private Integer score;
 
     /**

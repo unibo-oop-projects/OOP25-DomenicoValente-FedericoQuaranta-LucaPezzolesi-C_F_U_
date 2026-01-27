@@ -11,6 +11,7 @@ import it.unibo.api.rooms.RoomCellsValues;
 
 /**
  * an implementation of {@link Room}
+ * implements {@link java.io.Serializable}
  */
 public class RoomTemplate implements Room, java.io.Serializable {
 
@@ -18,9 +19,24 @@ public class RoomTemplate implements Room, java.io.Serializable {
     private final static int MAXIMUM_ENIGMAS_COUNT = 3;
     private final static int MAXIMUM_SIZE = 20;
 
+     /**
+     * The id of the room
+     */
     private final String id;
+
+     /**
+     * The game map
+     */
     private final Map<Position, RoomCellsValues> grid;
+
+     /**
+     * The position of the enigmas
+     */
     private final Map<Position, Enigma> enigmaGrid;
+
+     /**
+     * The position of the doors
+     */
     private final Map<Position, Door> doorGrid;
 
     /**

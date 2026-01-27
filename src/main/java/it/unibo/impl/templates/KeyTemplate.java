@@ -5,11 +5,23 @@ import it.unibo.api.key.Key;
 
 /**
  * an implementation of {@link Key}
+ * implements {@link java.io.Serializable}
  */
 public class KeyTemplate implements Key, java.io.Serializable {
     
+    /**
+     * The key id
+     */
     private final String id;
+
+    /**
+     * The name of the key
+     */
     private final String name;
+
+    /**
+     * The associated door
+     */
     private final Door destination;
 
     

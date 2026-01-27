@@ -9,8 +9,13 @@ import it.unibo.api.key.Key;
 
 /**
 * Inventory system
+* implements {@link java.io.Serializable}
 */
 public class Inventory implements java.io.Serializable {
+
+     /**
+     * The list of the keys
+     */
     private final List<Key> keys;
 
     /**
