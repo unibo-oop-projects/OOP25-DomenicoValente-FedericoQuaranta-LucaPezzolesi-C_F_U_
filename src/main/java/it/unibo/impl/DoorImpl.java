@@ -6,7 +6,7 @@ import it.unibo.api.rooms.Room;
 /**
  * implementation of {@link Door}
  */
-public class DoorImpl implements Door{
+public class DoorImpl implements Door, java.io.Serializable {
 
     private final String id;
     private final Room dstRoom;

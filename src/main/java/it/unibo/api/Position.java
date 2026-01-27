@@ -5,7 +5,7 @@ package it.unibo.api;
  * @param x player's x
  * @param y player's y
  */
-public record Position(int x, int y) {
+public record Position(int x, int y) implements java.io.Serializable {
 
     @Override 
     public String toString() {

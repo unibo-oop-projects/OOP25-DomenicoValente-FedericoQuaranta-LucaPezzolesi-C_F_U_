@@ -5,7 +5,7 @@ package it.unibo.api;
  * @param <X> the type of the first element
  * @param <Y> the type of the second element
  */
-public class Pair<X, Y> {
+public class Pair<X, Y> implements java.io.Serializable {
 
     private final X x;
     private final Y y;

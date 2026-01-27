@@ -9,7 +9,7 @@ import it.unibo.api.rooms.RoomManager;
 /**
  * implementation of {@link RoomManager} 
  */
-public class RoomManagerImpl implements RoomManager{
+public class RoomManagerImpl implements RoomManager, java.io.Serializable {
 
     private final Player player;
     private Room currentRoom;

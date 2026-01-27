@@ -12,7 +12,7 @@ import it.unibo.api.rooms.RoomCellsValues;
 /**
  * an implementation of {@link Room}
  */
-public class RoomTemplate implements Room{
+public class RoomTemplate implements Room, java.io.Serializable {
 
     private final static int MAXIMUM_DOORS_COUNT = 4;
     private final static int MAXIMUM_ENIGMAS_COUNT = 3;

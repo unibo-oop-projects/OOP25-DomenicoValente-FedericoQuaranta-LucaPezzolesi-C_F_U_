@@ -6,7 +6,7 @@ import it.unibo.api.key.Key;
 /**
  * an implementation of {@link Key}
  */
-public class KeyTemplate implements Key{
+public class KeyTemplate implements Key, java.io.Serializable {
     
     private final String id;
     private final String name;

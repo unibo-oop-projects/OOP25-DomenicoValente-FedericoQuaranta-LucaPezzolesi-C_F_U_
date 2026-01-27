@@ -7,7 +7,7 @@ import it.unibo.api.player.Player;
 /**
  * implementation of {@link Player}
  */
-public class PlayerImpl implements Player{
+public class PlayerImpl implements Player, java.io.Serializable {
     private Position position;
     private Integer score;
 

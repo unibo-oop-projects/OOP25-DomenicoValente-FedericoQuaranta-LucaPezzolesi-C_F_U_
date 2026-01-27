@@ -10,7 +10,7 @@ import it.unibo.api.key.Key;
 /**
 * Inventory system
 */
-public class Inventory {
+public class Inventory implements java.io.Serializable {
     private final List<Key> keys;
 
     /**

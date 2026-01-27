@@ -8,7 +8,7 @@ import it.unibo.api.enigmas.Enigma;
 /**
  * an implementation of {@link Enigma}
  */
-public class EnigmaTemplate implements Enigma{
+public class EnigmaTemplate implements Enigma, java.io.Serializable {
 
     private String id;
     private boolean completed;
