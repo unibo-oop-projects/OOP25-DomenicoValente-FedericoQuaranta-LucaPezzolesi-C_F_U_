@@ -1,6 +1,9 @@
 package it.unibo.impl;
 
+import java.util.Optional;
+
 import it.unibo.api.Position;
+import it.unibo.api.key.Key;
 import it.unibo.api.player.Player;
 
 
@@ -21,12 +24,18 @@ public class PlayerImpl implements Player, java.io.Serializable {
     private Integer score;
 
     /**
+     *The inventory
+     */
+    private Inventory inventory;
+
+    /**
      * constructor
      * @param position the position (x,y) where the player born 
      */
     public PlayerImpl(Position position){
         this.position=position;
         this.score=0;
+        this.inventory=new Inventory();
     }
 
     @Override
@@ -48,5 +57,15 @@ public class PlayerImpl implements Player, java.io.Serializable {
     @Override
     public void move(Position nextPosition) {
         this.position=nextPosition;       
+    }
+
+    @Override
+    public Inventory getInventory(){
+        return this.inventory;
+    }
+
+    @Override
+    public void addKeyToInventory(Optional<Key> newKey){
+        this.inventory.addKey(newKey);
     }
 }

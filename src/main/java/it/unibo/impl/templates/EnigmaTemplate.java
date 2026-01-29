@@ -156,8 +156,7 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
 
     @Override
     public Optional<Key> getKey() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getKey'");
+        return this.key;
     }
 
 }

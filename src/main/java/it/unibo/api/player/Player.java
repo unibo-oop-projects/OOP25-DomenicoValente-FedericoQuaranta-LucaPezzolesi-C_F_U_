@@ -1,6 +1,10 @@
 package it.unibo.api.player;
 
+import java.util.Optional;
+
 import it.unibo.api.Position;
+import it.unibo.api.key.Key;
+import it.unibo.impl.Inventory;
 
 /**
  * player
@@ -28,4 +32,15 @@ public interface Player {
      * @return the points
      */
     int getPoints();
-}
+
+    /**
+     * gets the inventory
+     * @return the inventory
+     */
+    Inventory getInventory();
+
+    /**
+     * add a new key to the inventory
+     */
+    void addKeyToInventory(Optional<Key> newKey);
+};
