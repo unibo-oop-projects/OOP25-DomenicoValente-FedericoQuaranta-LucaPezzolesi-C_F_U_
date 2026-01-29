@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import it.unibo.api.Position;
 import it.unibo.api.doors.Door;
@@ -48,7 +49,7 @@ public class TestRoom {
         this.doorMap.put(new Position(90, 54), new DoorImpl("testId", new RoomTemplate("testId")));
 
         this.enigmaMap = new HashMap<>();
-        this.enigmaMap.put(new Position(90, 54), new EnigmaTemplate("testId", false, "q", List.of("1"), "1"));
+        this.enigmaMap.put(new Position(90, 54), new EnigmaTemplate("testId", Optional.empty() , "q", List.of("1"), "1"));
 
         assertThrows(IllegalArgumentException.class, (() -> this.room.setLayout(3, doorMap, enigmaMap)));
 
@@ -57,9 +58,9 @@ public class TestRoom {
 
     private Map<Position, Enigma> initializeEnigmMap() {
         final Map<Position, Enigma> enigmaMap = new HashMap<>();
-        enigmaMap.put(new Position(0, 2), new EnigmaTemplate("testEnigma1", true, "testQuestion1", 
+        enigmaMap.put(new Position(0, 2), new EnigmaTemplate("testEnigma1", Optional.empty(), "testQuestion1", 
                 List.of("qst1", "qst2", "qst3", "qst4"), "qst4"));
-        enigmaMap.put(new Position(3, 3), new EnigmaTemplate("testEnigma2", false, "testQuestion2", 
+        enigmaMap.put(new Position(3, 3), new EnigmaTemplate("testEnigma2", Optional.empty(), "testQuestion2", 
                 List.of("qst1", "qst2", "qst3", "qst4"), "qst2"));
         return enigmaMap;
     }

@@ -2,8 +2,10 @@ package it.unibo.impl.templates;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import it.unibo.api.enigmas.Enigma;
+import it.unibo.api.key.Key;
 
 /**
  * an implementation of {@link Enigma}
@@ -22,9 +24,9 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
     private boolean completed;
     
     /**
-     * Indicate if there is a key inside
+     * the key that this enigma has to give to the player when completed
      */
-    private boolean keyInside;
+    private Optional<Key> key;
 
     /**
      * The question
@@ -54,12 +56,12 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
      * @param options the answers
      * @param correctOption the correct answer
      */
-    public EnigmaTemplate(final String id, final boolean keyInside, 
+    public EnigmaTemplate(final String id, final Optional<Key> key, 
         final String question, final List<String> options, final String correctOption
     ) {
         this.id = id;
         this.completed = false;
-        this.keyInside = keyInside;
+        this.key = key;
 
         if(! options.contains(correctOption)) {
             throw new IllegalArgumentException("no such option in the list");
@@ -81,7 +83,7 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
     }
     @Override
     public boolean isKeyInside() {
-        return this.keyInside;
+        return ! (this.key.isEmpty());
     }
     @Override
     public String getQuestion() {
@@ -113,14 +115,6 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
      */
     public void setId(final String id) {
         this.id = id;
-    }
-
-    /**
-     * sets if this enigma has to drop a key when completed
-     * @param hasTheKey {@code true} if this enigma has a key
-     */
-    public void setKeyInside(final boolean hasTheKey) {
-        this.keyInside = hasTheKey;
     }
 
     /**
@@ -158,6 +152,12 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
         if (!(obj instanceof EnigmaTemplate)) return false;
         EnigmaTemplate that = (EnigmaTemplate) obj;
         return Objects.equals(id, that.id) && Objects.equals(question, that.question);
+    }
+
+    @Override
+    public Optional<Key> getKey() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getKey'");
     }
 
 }

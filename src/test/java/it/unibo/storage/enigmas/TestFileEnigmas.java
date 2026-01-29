@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class TestFileEnigmas {
     @Test
     void testWritingOnFile() {
         this.fileWriter.addEnigma("test enigma 1", "test question 1", "correct answ",
-            List.of("wrong answ 1", "wrong answ 2", "correct answ") , false);
+            List.of("wrong answ 1", "wrong answ 2", "correct answ") , Optional.empty());
 
         this.fileWriter.writeOnFile();
 
@@ -39,7 +40,7 @@ public class TestFileEnigmas {
 
         assertEquals(1, enigmas.size());
 
-        assertEquals(enigmas.get(0), new EnigmaTemplate("test enigma 1", false,  "test question 1",
+        assertEquals(enigmas.get(0), new EnigmaTemplate("test enigma 1", Optional.empty(),  "test question 1",
             List.of("wrong answ 1", "wrong answ 2", "correct answ"), "correct answ"));
 
         this.fileWriter.eraseSave();
@@ -48,7 +49,7 @@ public class TestFileEnigmas {
     @Test
     void testExceptionsThrowing() {
         assertThrows(IllegalArgumentException.class, () -> this.fileWriter.addEnigma("test enigma 1", "test question 1", "correct answ",
-            List.of("wrong answ 1", "wrong answ 2", "wrong String") , false));
+            List.of("wrong answ 1", "wrong answ 2", "wrong String") , Optional.empty()));
     }
 
 }

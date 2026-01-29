@@ -3,6 +3,7 @@ package it.unibo.storage.enigma;
 import org.yaml.snakeyaml.Yaml;
 
 import it.unibo.api.enigmas.Enigma;
+import it.unibo.api.key.Key;
 import it.unibo.core.GameSettings;
 import it.unibo.impl.templates.EnigmaTemplate;
 
@@ -10,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * enigmas saving system
@@ -32,10 +34,10 @@ public class EnigmaSaveWrite {
      * @param hasTheKey if this enigma has to drop a key when completed
      */
     public void addEnigma(final String id, final String question,
-            final String correctOption, final List<String> options, final boolean hasTheKey) {
+            final String correctOption, final List<String> options, final Optional<Key> key) {
 
         if(options.contains(correctOption)) {
-            this.enigmas.add(new EnigmaTemplate(id, hasTheKey, question, options, correctOption));
+            this.enigmas.add(new EnigmaTemplate(id, key, question, options, correctOption));
         } else {
             throw new IllegalArgumentException("wrong answers");
         }
