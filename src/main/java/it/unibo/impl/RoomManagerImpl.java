@@ -1,6 +1,7 @@
 package it.unibo.impl;
 
 import it.unibo.api.Position;
+import it.unibo.api.enigmas.Enigma;
 import it.unibo.api.player.Player;
 import it.unibo.api.rooms.Room;
 import it.unibo.api.rooms.RoomCellsValues;
@@ -58,24 +59,17 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
 
     @Override
     public boolean isEnteringAnEvent(final Position nextPosition) {
-        if(this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.ENIGMA){
+        if(this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.ENIGMA || this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.DOOR){
             enterEnigma(nextPosition);
-            return true;
-        }else if(this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.DOOR){
-            enterDoor(nextPosition);
             return true;
         }else{
             return false;
         }
     }
 
-    /**
-     * get the question and the possible options to solve the enigma
-     * @param posEnigma to get the obj enigma
-     */
-    private void enterEnigma(final Position posEnigma){
-        this.currentRoom.getEnigma(posEnigma).getQuestion();
-        this.currentRoom.getEnigma(posEnigma).getOptions();
+    @Override
+    public Enigma enterEnigma(final Position posEnigma){
+        return this.currentRoom.getEnigma(posEnigma);
     }
 
     /**

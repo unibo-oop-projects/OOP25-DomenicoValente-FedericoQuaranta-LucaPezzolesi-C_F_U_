@@ -1,6 +1,7 @@
 package it.unibo.api.rooms;
 
 import it.unibo.api.Position;
+import it.unibo.api.enigmas.Enigma;
 
 /**
  * a simple manager for player movement in the rooms
@@ -41,6 +42,13 @@ public interface RoomManager {
      * @return {@code true} if the player is entering an event, {@code false} otherwise
      */
     boolean isEnteringAnEvent(Position nextPosition);
+
+    /**
+     * get enigma
+     * @param posEnigma to get the obj enigma
+     * @return the enigma
+     */
+    public Enigma enterEnigma(final Position posEnigma);
 
     /**
      * gets the current player position
