@@ -60,7 +60,6 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
     @Override
     public boolean isEnteringAnEvent(final Position nextPosition) {
         if(this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.ENIGMA || this.currentRoom.getCellContent(nextPosition) == RoomCellsValues.DOOR){
-            enterEnigma(nextPosition);
             return true;
         }else{
             return false;
@@ -72,11 +71,8 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
         return this.currentRoom.getEnigma(posEnigma);
     }
 
-    /**
-     * if the door is open enter to the next door
-     * @param posDoor to ghet the obj door
-     */
-    private void enterDoor(final Position posDoor){ 
+    @Override
+    public void enterDoor(final Position posDoor){ 
         if(this.currentRoom.getDoor(posDoor).isOpen()){
                 enterNextRoom(this.currentRoom.getDoor(posDoor).getDstRoom());
         }

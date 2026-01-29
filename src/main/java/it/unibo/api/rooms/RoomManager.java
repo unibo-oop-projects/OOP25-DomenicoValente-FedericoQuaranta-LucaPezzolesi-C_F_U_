@@ -48,7 +48,13 @@ public interface RoomManager {
      * @param posEnigma to get the obj enigma
      * @return the enigma
      */
-    public Enigma enterEnigma(final Position posEnigma);
+    Enigma enterEnigma(final Position posEnigma);
+
+    /**
+     * if the door is open enter to the next door
+     * @param posDoor to ghet the obj door
+     */
+    void enterDoor(final Position posDoor);
 
     /**
      * gets the current player position
