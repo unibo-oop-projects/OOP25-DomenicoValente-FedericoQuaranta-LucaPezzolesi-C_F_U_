@@ -41,6 +41,7 @@ public interface Player {
 
     /**
      * add a new key to the inventory
+     * @param newKey the key that has to be added
      */
     void addKeyToInventory(Optional<Key> newKey);
 };
