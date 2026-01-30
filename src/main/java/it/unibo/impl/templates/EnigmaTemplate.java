@@ -51,7 +51,7 @@ public class EnigmaTemplate implements Enigma, java.io.Serializable {
     /**
      * constructor
      * @param id enigm's id
-     * @param keyInside if this enigm has to return a key when completed
+     * @param key key that the enigma might have
      * @param question the question
      * @param options the answers
      * @param correctOption the correct answer
