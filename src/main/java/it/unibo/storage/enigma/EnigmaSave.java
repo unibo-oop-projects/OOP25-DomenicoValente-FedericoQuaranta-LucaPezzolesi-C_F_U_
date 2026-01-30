@@ -32,9 +32,17 @@ public class EnigmaSave {
      * @param list the list of enigmas to save
      */
     public void saveEnigmas(final List<Enigma> list) {
+
+        final List<DataForEnigmas> saveList = new ArrayList<>();
+        list.stream().forEach(e -> {
+            saveList.add(new DataForEnigmas(e.getId(), e.getQuestion(), 
+            e.getCorrectOption(), e.getOptions(), 
+            e.getKey().isEmpty() ? "" : e.getKey().get().getDst().getId()));
+        });
+
         final Yaml yamlWrite = new Yaml();
         try(FileWriter fw = new FileWriter(GameSettings.YAML_FILES_DEFAULT_PATH.getValue())) {
-            yamlWrite.dump(list, fw);
+            yamlWrite.dump(saveList, fw);
         } catch (IOException excep) {
             excep.printStackTrace();
         }
