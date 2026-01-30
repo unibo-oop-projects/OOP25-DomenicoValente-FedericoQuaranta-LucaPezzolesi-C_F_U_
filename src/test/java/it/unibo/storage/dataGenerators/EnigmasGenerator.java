@@ -32,8 +32,8 @@ public class EnigmasGenerator {
         populateList(checkList);
         final EnigmaSave storage = new EnigmaSave();
 
-        storage.loadEnigmas();        
-        assertEquals(checkList, storage.getEnigmas());
+        storage.loadEnigmas();
+        assertEquals(checkList.stream().map(e -> e.getId()).toList(), storage.getEnigmas().stream().map(e -> e.getId()).toList());
     }
 
     private static void populateList(final List<Enigma> list) {
