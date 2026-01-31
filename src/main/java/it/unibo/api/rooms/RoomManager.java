@@ -1,5 +1,7 @@
 package it.unibo.api.rooms;
 
+import java.util.Optional;
+
 import it.unibo.api.Position;
 import it.unibo.api.enigmas.Enigma;
 import it.unibo.impl.Inventory;
@@ -53,7 +55,7 @@ public interface RoomManager {
      * @param posEnigma to get the obj enigma
      * @return the enigma
      */
-    Enigma enterEnigma(final Position posEnigma);
+    Optional<Enigma> enterEnigma(final Position posEnigma);
 
     /**
      * if the door is open enter to the next door

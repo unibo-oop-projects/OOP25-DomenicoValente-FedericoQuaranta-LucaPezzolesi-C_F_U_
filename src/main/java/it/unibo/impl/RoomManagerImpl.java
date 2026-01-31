@@ -1,5 +1,7 @@
 package it.unibo.impl;
 
+import java.util.Optional;
+
 import it.unibo.api.Position;
 import it.unibo.api.enigmas.Enigma;
 import it.unibo.api.player.Player;
@@ -77,8 +79,8 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
     }
 
     @Override
-    public Enigma enterEnigma(final Position posEnigma){
-        return this.currentRoom.getEnigma(posEnigma);
+    public Optional<Enigma> enterEnigma(final Position posEnigma){
+        return Optional.of(this.currentRoom.getEnigma(posEnigma));
     }
 
     @Override
