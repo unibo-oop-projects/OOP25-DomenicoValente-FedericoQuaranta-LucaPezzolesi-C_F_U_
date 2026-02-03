@@ -37,7 +37,7 @@ public class EnigmaSave {
         list.stream().forEach(e -> {
             saveList.add(new DataForEnigmas(e.getId(), e.getQuestion(), 
             e.getCorrectOption(), e.getOptions(), 
-            e.getKey().isEmpty() ? "" : e.getKey().get().getDst().getId()));
+            e.getKey().isEmpty() ? "" : e.getKey().get().getId()));
         });
 
         final Yaml yamlWrite = new Yaml();
@@ -62,7 +62,7 @@ public class EnigmaSave {
 
             raw.stream().forEach(e -> {
                 this.enigmas.add(new DataForEnigmas(e.getId(), e.getQuestion(), 
-                    e.getCorrectOption(), e.getOptions(), e.getDoorIdForThisKey()));
+                    e.getCorrectOption(), e.getOptions(), e.getKeyId()));
             });
 
         } catch (final Exception excep) {
