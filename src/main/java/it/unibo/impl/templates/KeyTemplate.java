@@ -2,6 +2,7 @@ package it.unibo.impl.templates;
 
 import it.unibo.api.doors.Door;
 import it.unibo.api.key.Key;
+import it.unibo.impl.Inventory;
 
 /**
  * an implementation of {@link Key}
@@ -12,17 +13,17 @@ public class KeyTemplate implements Key, java.io.Serializable {
     /**
      * The key id
      */
-    private final String id;
+    private String id;
 
     /**
      * The name of the key
      */
-    private final String name;
+    private String name;
 
     /**
      * The associated door
      */
-    private final Door destination;
+    private Door destination;
 
     
     /**
@@ -36,6 +37,10 @@ public class KeyTemplate implements Key, java.io.Serializable {
         this.name=name;
         this.destination=destination;
     }
+    /**
+     * 0 argoments constructor 
+     */
+    public KeyTemplate(){ }
 
 
     @Override
@@ -52,9 +57,38 @@ public class KeyTemplate implements Key, java.io.Serializable {
     public Door getDst() {
         return this.destination;
     }
-
+    
     @Override
     public void openDoor() {
             this.destination.setOpen(true);
+    }
+    
+    @Override
+    public void addToInventory(){
+        Inventory.addKey(this);
+    }
+
+    /**
+     * sets the key id
+     * @param newId the new id of the key
+     */
+    public void setId(final String newId) {
+        this.id=newId;
+    }
+
+    /**
+     * sets the key name
+     * @param newName the new name of the key
+     */
+    public void setName(final String newName) {
+        this.name=newName;
+    }
+
+    /**
+     * sets the key destination
+     * @param newDoor the new destination of the key
+     */
+    public void setDst(final Door newDoor) {
+        this.destination=newDoor;
     }
 }

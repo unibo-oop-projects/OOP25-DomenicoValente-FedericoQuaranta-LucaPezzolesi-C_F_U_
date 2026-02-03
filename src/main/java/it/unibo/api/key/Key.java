@@ -10,7 +10,7 @@ public interface Key {
     /**
      * gets  the id of the key
      * @return the id 
-     */
+    */
     public String getId();
 
     /**
@@ -24,9 +24,14 @@ public interface Key {
     * @return the door 
     */
     public Door getDst();
-    
+
     /**
      * open the door of the room
      */
     public void openDoor();
+
+    /**
+     * add a  key to the inventory
+     */
+    public void addToInventory();
 } 
