@@ -203,6 +203,17 @@ public class RoomTemplate implements Room, java.io.Serializable {
         return this.enigmaGrid.get(pos);
     }
     
+    @Override
+    public Map<Position, Enigma> getEnigmaGrid() {
+        return this.enigmaGrid;
+    }
+    
+    @Override
+    public Map<Position, Door> getDoorGrid() {
+        return this.doorGrid;
+    }
+
+    
 //setters and getters for yaml//
 
     /**
@@ -244,22 +255,5 @@ public class RoomTemplate implements Room, java.io.Serializable {
     private Map<Position, RoomCellsValues> getGrid() {
         return this.grid;
     }
-
-    /**
-     * getter for snakeYaml
-     * @return .
-     */
-    private Map<Position, Enigma> getEnigmaGrid() {
-        return this.enigmaGrid;
-    }
-
-    /**
-     * getter for snakeYaml
-     * @return .
-     */
-    private Map<Position, Door> getDoorGrid() {
-        return this.doorGrid;
-    }
-    //
-
+//
 }

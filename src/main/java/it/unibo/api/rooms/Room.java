@@ -54,4 +54,17 @@ public interface Room {
      * @return the enigma
      */
     Enigma getEnigma(Position pos);
+
+    /**
+     * getter for the Map position - enigma in the room
+     * @return the enigma grid
+     */
+    public Map<Position, Enigma> getEnigmaGrid();
+    
+    /**
+     * getter for the Map position - door in the room
+     * @return the door grid
+     */
+    public Map<Position, Door> getDoorGrid();
+
 }
