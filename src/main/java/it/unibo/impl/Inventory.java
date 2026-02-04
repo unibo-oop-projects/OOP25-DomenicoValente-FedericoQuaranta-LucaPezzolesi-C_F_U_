@@ -33,7 +33,7 @@ public class Inventory implements java.io.Serializable {
 
     /**
      * add an obj Key to the list
-     * @param opt optional param key
+     * @param key optional param key
      */
     public static void addKey(Key key){
         keys.add(key);
@@ -52,5 +52,12 @@ public class Inventory implements java.io.Serializable {
             }
         }
         return false;
+    }
+
+    /**
+     * resets the inventory to an empty list
+     */
+    public static void reset() {
+        keys = new ArrayList<>();
     }
 }

@@ -5,8 +5,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.api.key.Key;
 import it.unibo.api.rooms.RoomManager;
+import it.unibo.impl.Inventory;
 
 /**
  * {@link RoomManager} storage system
@@ -26,6 +30,7 @@ public class RoomManagerStorage {
     public static void save(RoomManager model) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
             out.writeObject(model);
+            out.writeObject(Inventory.getKeys());
         }
     }
 
@@ -38,7 +43,13 @@ public class RoomManagerStorage {
      */
     public static RoomManager load() throws IOException, ClassNotFoundException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILENAME))) {
-            return (RoomManager) in.readObject();
+            RoomManager roomManager = (RoomManager) in.readObject();
+            List<Key> keys = (List<Key>) in.readObject();
+            Inventory.reset();
+            for(Key key : keys) {
+                Inventory.addKey(key);
+            }
+            return roomManager;
         }
     }
 }
