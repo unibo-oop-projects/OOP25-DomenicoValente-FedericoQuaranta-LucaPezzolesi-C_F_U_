@@ -67,4 +67,10 @@ public interface Room {
      */
     public Map<Position, Door> getDoorGrid();
 
+    /**
+     * gets the size of this room
+     * @return the size (one edge) of this room
+     */
+    public int getSize();
+
 }

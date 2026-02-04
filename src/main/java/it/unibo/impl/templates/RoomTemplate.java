@@ -256,4 +256,9 @@ public class RoomTemplate implements Room, java.io.Serializable {
         return this.grid;
     }
 //
+
+    @Override
+    public int getSize() {
+        return (int) Math.sqrt(this.grid.size());
+    }
 }
