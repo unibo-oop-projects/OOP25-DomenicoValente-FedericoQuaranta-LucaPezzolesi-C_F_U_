@@ -1,0 +1,12 @@
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: opt1
+  id: testId
+  key: !!it.unibo.impl.templates.KeyTemplate
+    dst: !!it.unibo.impl.DoorImpl
+      dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
+      id: test door id
+      open: false
+    id: key1
+    name: door key test
+  options: [opt1, opt2]
+  question: qestion1

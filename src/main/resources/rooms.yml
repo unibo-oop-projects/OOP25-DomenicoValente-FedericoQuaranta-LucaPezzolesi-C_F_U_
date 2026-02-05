@@ -1,0 +1,27 @@
+- !!it.unibo.storage.rooms.DataForRooms
+  doors: []
+  enigmas: []
+  id: second_room
+  size: 15
+- !!it.unibo.storage.rooms.DataForRooms
+  doors:
+  - data: {dstRoomId: second_room, id: start_to_second, open: false}
+    x: 0
+    y: 5
+  enigmas:
+  - data:
+      correctOption: '4'
+      id: enigma_math
+      key: !!it.unibo.impl.templates.KeyTemplate
+        dst: !!it.unibo.impl.DoorImpl
+          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
+          id: start_to_second
+          open: false
+        id: key_second
+        name: key_second
+      options: ['3', '4', '5']
+      question: 2+2=?
+    x: 5
+    y: 3
+  id: start_rooom
+  size: 10

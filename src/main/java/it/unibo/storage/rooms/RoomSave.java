@@ -113,34 +113,7 @@ public class RoomSave {
         } catch (final Exception excep) {
             excep.printStackTrace();
         }
-        /*final String path= "src/main/resources/rooms.yml";
-        final File file = new File(path);
-
-        if (!file.exists()) {
-            return;
-        }
-
-        final LoaderOptions loadOpt = new LoaderOptions();
-        final TagInspector tagInsp = t -> t.getClassName().startsWith("it.unibo");
-        loadOpt.setTagInspector(tagInsp);
-
-        try (final InputStream fis = new FileInputStream(path)) {
-            final Yaml yamlRead = new Yaml(new Constructor(List.class, loadOpt));
-            
-            final List<DataForRooms> rawData = yamlRead.load(fis);
-
-            Optional.ofNullable(rawData).ifPresent(data -> {
-                final Map<String, RoomTemplate> registry = createRoomShells(data);
-
-                populateRoomsContent(data, registry);
-
-                this.rooms.clear();
-                this.rooms.addAll(registry.values());
-            });
-
-        } catch (final Exception excep) {
-            excep.printStackTrace();
-        }*/
+       
     }
 
     public List<Room> getRooms() {

@@ -21,11 +21,15 @@ import it.unibo.impl.templates.RoomTemplate;
 import it.unibo.storage.rooms.RoomSave;
 
 public class RoomsGeneration {
-    public static void main(String[] args){
-        List<Room> roomsTosave= new ArrayList<>();
+    public static void main(String[] args) {
+        List<Room> roomsTosave = new ArrayList<>();
+
+        populateList(roomsTosave);
 
         final RoomSave storagSave = new RoomSave();
         storagSave.saveRooms(roomsTosave);
+        
+        System.out.println("Generation completed " + roomsTosave.size() + " rooms in yaml's file.");
     }
 
     private static void populateList(final List<Room> list){
@@ -68,6 +72,7 @@ public class RoomsGeneration {
 
         final RoomSave storagSave= new RoomSave();
         storagSave.saveRooms(expectedList);
+        storagSave.loadRooms();
 
         List<Room> loadedList= storagSave.getRooms();
 
