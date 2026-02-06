@@ -11,11 +11,28 @@ import it.unibo.api.Position;
 import it.unibo.api.rooms.Room;
 import it.unibo.input.Controller;
 
-public class GameFrame extends JFrame{
+/**
+ * Main window of the game application.
+ * Extends {@link JFrame} and contains all GUI components of the game.
+ */
+public class GameFrame extends JFrame implements View {
 
+    /**
+     * the gamepanel
+     */
     private GamePanel gamePanel;
+
+    /**
+     * the controller
+     */
     private Controller controller;
 
+    /**
+     * constructor
+     * @param room the room shown
+     * @param playerPosition the positon of the player
+     * @param controller the controller
+     */
     public GameFrame(Room room, Position playerPosition, Controller controller) {
         setTitle("C. F. U.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,7 +55,8 @@ public class GameFrame extends JFrame{
         setVisible(true);
     }
 
-    public void render(){
+    @Override
+    public void updateView(Room room, Position position){
     	gamePanel.repaint();
     }
     

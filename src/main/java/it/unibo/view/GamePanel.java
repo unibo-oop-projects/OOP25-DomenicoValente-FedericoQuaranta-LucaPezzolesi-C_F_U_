@@ -20,13 +20,38 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+/**
+ * Game panel that displays the game world.
+ * Extends {@link JPanel}.
+ */
 public class GamePanel extends JPanel implements KeyListener {
 
+    /**
+     * the controller
+     */
     private Controller controller;
+
+    /**
+     * a room
+     */
     private Room room;    
+
+    /**
+     * the player positon
+     */
     private Position playerPosition; 
+
+    /**
+     * the images
+     */
     private BufferedImage freeImage, obstacleImage, wallImage, doorImage, enigmaImage, playerImage;
-    
+
+    /**
+     * constructor
+     * @param room the room shown
+     * @param playerPosition the positon of the player
+     * @param controller the controller
+     */
     public GamePanel(Room room, Position playerPosition, Controller controller) {
         this.controller = controller;
         this.room = room;
@@ -43,14 +68,23 @@ public class GamePanel extends JPanel implements KeyListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        repaint();
     }
 
+    /**
+     * sets the player position
+     * @param playerPosition the positon of the player
+     */
     public void setPlayerPosition(Position playerPosition) {
         this.playerPosition = playerPosition;
         repaint();
     }
 
-    public void setMappa(Room room){
+    /**
+     * sets the room
+     * @param room the room
+     */
+    public void setRoom(Room room){
         this.room = room;
         repaint();
     }

@@ -17,7 +17,6 @@ public class TestGuiStart {
         Room room = new RoomTemplate("id");
         room.setLayout(8, initializeDoorMap(), initializeEnigmMap());
         GameFrame gm = new GameFrame(room, new Position(1, 3), null);
-        gm.render();
     }
 
     static private Map<Position, Enigma> initializeEnigmMap() {
