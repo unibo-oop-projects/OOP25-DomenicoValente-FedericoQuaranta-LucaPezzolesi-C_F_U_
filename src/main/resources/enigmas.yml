@@ -1,12 +1,55 @@
 - !!it.unibo.storage.enigma.DataForEnigmas
-  correctOption: opt1
-  id: testId
-  key: !!it.unibo.impl.templates.KeyTemplate
-    dst: !!it.unibo.impl.DoorImpl
-      dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
-      id: test door id
-      open: false
-    id: key1
-    name: door key test
-  options: [opt1, opt2]
-  question: qestion1
+  correctOption: '10'
+  id: inf_01
+  key: null
+  options: ['10', '12', '101', '20']
+  question: A quanto equivale 1010 in base decimale?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: Pila
+  id: inf_02
+  key: null
+  options: [Coda, Lista, Pila, Albero]
+  question: Quale struttura dati segue il principio LIFO?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: RAM
+  id: inf_03
+  key: null
+  options: [RAM, ROM, SSD, HDD]
+  question: Quale di questi tipi di memoria è volatile?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: main()
+  id: inf_04
+  key: null
+  options: [start(), run(), main(), init()]
+  question: Qual è il metodo che indica punto di ingresso in un'applicazione Java?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: '20'
+  id: mat_01
+  key: null
+  options: ['32', '20', '16', '64']
+  question: Quanto fa 4 + 4 * 4?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: '17'
+  id: mat_02
+  key: null
+  options: ['9', '15', '17', '21']
+  question: Quale tra i seguenti numeri è un numero primo?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: '32'
+  id: mat_03
+  key: null
+  options: ['10', '25', '32', '64']
+  question: Quanto fa 2^5?
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: Maria
+  id: log_01
+  key: null
+  options: [Nunu, Nina, Anna, Maria]
+  question: 'Il padre di Maria ha 5 figlie: Nana, Nene, Nini, Nono. Come si chiama
+    la quinta?'
+- !!it.unibo.storage.enigma.DataForEnigmas
+  correctOption: Seconda
+  id: log_02
+  key: null
+  options: [Prima, Seconda, Terza, Penultima]
+  question: se durante una gara superi il secondo, in che posizione ti trovi?
