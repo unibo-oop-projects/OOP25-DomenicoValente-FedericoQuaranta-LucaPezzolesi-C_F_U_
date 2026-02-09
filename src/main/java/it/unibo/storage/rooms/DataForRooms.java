@@ -118,11 +118,11 @@ public class DataForRooms {
         /**
          * coordinate x of the enigma
          */
-        public int x;
+        public double x;
         /**
          * coordinate y of the enigma
          */
-        public int y;
+        public double y;
         /**
          * the enigmas data
          */
@@ -140,11 +140,11 @@ public class DataForRooms {
         /**
          * coordinate x of the door
          */
-        public int x;
+        public double x;
         /**
          * coordinate x of the door
          */
-        public int y;
+        public double y;
         /**
          * the enigmas data
          */

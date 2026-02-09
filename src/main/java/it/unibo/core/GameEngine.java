@@ -44,8 +44,8 @@ public class GameEngine implements Controller {
             Time.updateDeltaTime(deltaTime);
 
             this.processInput();
-            // this.update();
-            // this.render();
+            this.update();
+            this.render();
 
             this.waitUntilNextFrame(currentCycleStartTime);
 

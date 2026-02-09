@@ -66,8 +66,8 @@ public class RoomSave {
 
                     if (dstId != null) {
                         DataForRooms.DoorData dd = new DataForRooms.DoorData();
-                        dd.x = pos.x();
-                        dd.y = pos.y();
+                        dd.x = pos.getX();
+                        dd.y = pos.getY();
                         dd.data = new DataForDoor(door.getId(), dstId, door.isOpen());
                         doorDataList.add(dd);
                     }
@@ -77,8 +77,8 @@ public class RoomSave {
                 List<DataForRooms.EnigmaData> enigmaDataList = new ArrayList<>();
                 rt.getEnigmaGrid().forEach((pos, enigma) -> {
                     DataForRooms.EnigmaData ed = new DataForRooms.EnigmaData();
-                    ed.x = pos.x();
-                    ed.y = pos.y();
+                    ed.x = pos.getX();
+                    ed.y = pos.getY();
                     ed.data = new DataForEnigmas(
                         enigma.getId(), enigma.getQuestion(), enigma.getCorrectOption(), 
                         enigma.getOptions(), enigma.getKey().orElse(null)

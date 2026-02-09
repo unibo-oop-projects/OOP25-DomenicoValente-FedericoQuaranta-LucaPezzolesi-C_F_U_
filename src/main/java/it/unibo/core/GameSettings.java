@@ -6,7 +6,7 @@ package it.unibo.core;
 public enum GameSettings {
 
     /** fps cap */
-    FPS_CAP("2"),
+    FPS_CAP("15"),
 
     /** default path for  enigma yml files */
     ENIGMAS_YAML_FILES_DEFAULT_PATH("./src/main/resources/enigmas.yml"),
