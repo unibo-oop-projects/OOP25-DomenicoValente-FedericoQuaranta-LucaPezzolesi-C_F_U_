@@ -2,10 +2,8 @@ package it.unibo.storage.rooms;
 
 import java.io.FileInputStream;
 import java.io.FileWriter;
-//import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-//import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -14,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-//import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.inspector.TagInspector;

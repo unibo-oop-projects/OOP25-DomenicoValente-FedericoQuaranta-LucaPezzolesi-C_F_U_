@@ -21,6 +21,7 @@ import it.unibo.storage.rooms.RoomSave;
 
 public class RoomsGeneration {
     public static void main(String[] args) {
+             
         List<Room> roomsTosave = new ArrayList<>();
 
         populateList(roomsTosave);
@@ -45,23 +46,38 @@ public class RoomsGeneration {
         doors3.put(new Position(13, 0), door3_to_end);
 
         Map<Position, Enigma> enigmas3 = new HashMap<>();
-        enigmas3.put(new Position(4, 4),new EnigmaTemplate(
-            "inf_01", 
+
+        enigmas3.put(new Position(5, 10),new EnigmaTemplate(
+            "inf_03", 
             null, 
-            "A quanto equivale 1010 in base decimale?", 
-            List.of("10", "12", "101", "20"), 
-            "10"
+            "Quale di questi tipi di memoria è volatile?", 
+            List.of("RAM", "ROM", "SSD", "HDD"),
+            "RAM"
         ));
-        enigmas3.put(new Position(1, 11), new EnigmaTemplate(
-            "mat_01", 
+        enigmas3.put(new Position(3, 8), new EnigmaTemplate(
+            "mat_03", 
+            null, 
+            "Quanto fa 2^5?", 
+            List.of("10", "25", "32", "64"), 
+            "32"
+        ));
+        enigmas3.put(new Position(9, 2), new EnigmaTemplate(
+            "log_02", 
             new KeyTemplate(
-                "3_to_end",
-                "Chiave d'oro",
+                "1_to_2",
+                "Chiave di bronzo",
                 door3_to_end
             ), 
-            "Quanto fa 4 + 4 * 4?", 
-            List.of("32", "20", "16", "64"), 
-            "20"
+            "se durante una gara superi il secondo, in che posizione ti trovi?", 
+            List.of("Prima", "Seconda", "Terza", "Penultima"), 
+            "Seconda"
+        ));
+        enigmas3.put(new Position(13, 13), new EnigmaTemplate(
+            "inf_04", 
+            null, 
+            "Qual è il metodo che indica punto di ingresso in un'applicazione Java?", 
+            List.of("start()", "run()", "main()", "init()"), 
+            "main()"
         ));
 
         thirdRoom.setLayout(15, doors3, enigmas3);
@@ -113,37 +129,23 @@ public class RoomsGeneration {
 
         Map<Position, Enigma> enigmas1 = new HashMap<>();
 
-        enigmas1.put(new Position(5, 10),new EnigmaTemplate(
-            "inf_03", 
+        enigmas1.put(new Position(4, 4),new EnigmaTemplate(
+            "inf_01", 
             null, 
-            "Quale di questi tipi di memoria è volatile?", 
-            List.of("RAM", "ROM", "SSD", "HDD"),
-            "RAM"
+            "A quanto equivale 1010 in base decimale?", 
+            List.of("10", "12", "101", "20"), 
+            "10"
         ));
-        enigmas1.put(new Position(3, 8), new EnigmaTemplate(
-            "mat_03", 
-            null, 
-            "Quanto fa 2^5?", 
-            List.of("10", "25", "32", "64"), 
-            "32"
-        ));
-        enigmas1.put(new Position(9, 2), new EnigmaTemplate(
-            "log_02", 
+        enigmas1.put(new Position(1, 11), new EnigmaTemplate(
+            "mat_01", 
             new KeyTemplate(
-                "1_to_2",
-                "Chiave di bronzo",
+                "3_to_end",
+                "Chiave d'oro",
                 door1_to_2
             ), 
-            "se durante una gara superi il secondo, in che posizione ti trovi?", 
-            List.of("Prima", "Seconda", "Terza", "Penultima"), 
-            "Seconda"
-        ));
-        enigmas1.put(new Position(14, 13), new EnigmaTemplate(
-            "inf_04", 
-            null, 
-            "Qual è il metodo che indica punto di ingresso in un'applicazione Java?", 
-            List.of("start()", "run()", "main()", "init()"), 
-            "main()"
+            "Quanto fa 4 + 4 * 4?", 
+            List.of("32", "20", "16", "64"), 
+            "20"
         ));
 
         startRoom.setLayout(15, doors1, enigmas1);
