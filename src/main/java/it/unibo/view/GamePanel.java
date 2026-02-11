@@ -116,7 +116,6 @@ public class GamePanel extends JPanel implements KeyListener {
             }
         }
 
-        // disegna il player sopra la mappa
         g.drawImage(playerImage, (int) (playerPosition.getX()*cellWidth), (int) (playerPosition.getY()*cellHeight), (int) cellWidth, (int) cellHeight, null);
     }
 

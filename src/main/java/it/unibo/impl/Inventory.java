@@ -18,6 +18,8 @@ public class Inventory implements java.io.Serializable {
      */
     private static List<Key> keys = new ArrayList<>();
 
+    private static int maxSize = 0;
+
     /**
      * constructor
      */
@@ -59,5 +61,31 @@ public class Inventory implements java.io.Serializable {
      */
     public static void reset() {
         keys = new ArrayList<>();
+    }
+
+    /**
+     * set the max size of the inventory
+     * @param size the new max size
+     */
+    public static void setMaxSize(int size) {
+        if(maxSize == 0) { 
+            maxSize = size;
+        }
+    }
+
+    /**
+     * getter of actual size
+     * @return the actual size
+     */
+    public static int getActualSize() {
+        return keys.size();
+    }
+
+    /**
+     * getter of max size
+     * @return the max size
+     */
+    public static int getMaxSize() {
+        return maxSize;
     }
 }

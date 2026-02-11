@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import it.unibo.api.Position;
 import it.unibo.api.enigmas.Enigma;
@@ -27,6 +26,11 @@ public class GameFrame extends JFrame implements View {
      * the gamepanel
      */
     private GamePanel gamePanel;
+
+    /**
+     * the gamepanel
+     */
+    private InventoryPanel inventoryPanel;
 
     /**
      * the controller
@@ -50,9 +54,9 @@ public class GameFrame extends JFrame implements View {
         this.gamePanel.setPreferredSize(new Dimension(800, 600));
         add(gamePanel, BorderLayout.CENTER);
 
-        JPanel inventoryPanel = new JPanel();
+        this.inventoryPanel = new InventoryPanel();
         inventoryPanel.setPreferredSize(new Dimension(200, 600));
-        inventoryPanel.setBackground(Color.DARK_GRAY); // solo per vedere il pannello
+        inventoryPanel.setBackground(Color.DARK_GRAY);
         add(inventoryPanel, BorderLayout.EAST);
 
         setVisible(true);
@@ -64,6 +68,7 @@ public class GameFrame extends JFrame implements View {
         gamePanel.setRoom(room);
         gamePanel.setPlayerPosition(position);
     	gamePanel.repaint();
+        inventoryPanel.repaint();
         if(enigma.isPresent()) {
             Enigma realEnigma = enigma.get();
             controller.catchCommand(new StopMovement());
