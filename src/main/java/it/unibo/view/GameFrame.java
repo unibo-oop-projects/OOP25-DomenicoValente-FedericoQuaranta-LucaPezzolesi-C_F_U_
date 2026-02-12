@@ -79,8 +79,8 @@ public class GameFrame extends JFrame implements View {
                 Object[] options = realEnigma.getOptions().toArray();
                 String answer = (String) JOptionPane.showInputDialog(
                     this,
-                    realEnigma.getId(),
                     realEnigma.getQuestion(),
+                    "enigma",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     options,
