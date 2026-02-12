@@ -1,115 +1,118 @@
 - !!it.unibo.storage.rooms.DataForRooms
-  doors:
-  - data: {dstRoomId: room_2, id: door1_to_2, open: false}
-    x: 10.0
-    y: 14.0
-  enigmas:
-  - data:
-      correctOption: '10'
-      id: inf_01
-      key: null
-      options: ['10', '12', '101', '20']
-      question: A quanto equivale 1010 in base decimale?
-    x: 4.0
-    y: 4.0
-  - data:
-      correctOption: '20'
-      id: mat_01
-      key: !!it.unibo.impl.templates.KeyTemplate
-        dst: !!it.unibo.impl.DoorImpl
-          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
-          id: door1_to_2
-          open: false
-        id: 3_to_end
-        name: Chiave d'oro
-      options: ['32', '20', '16', '64']
-      question: Quanto fa 4 + 4 * 4?
-    x: 1.0
-    y: 11.0
-  id: start_room
+  doors: {}
+  enigmas: {}
+  id: room_finish
   size: 15
 - !!it.unibo.storage.rooms.DataForRooms
   doors:
-  - data: {dstRoomId: room_3, id: door2_to_3, open: false}
-    x: 10.0
-    y: 14.0
-  - data: {dstRoomId: start_room, id: door2_to_1, open: false}
-    x: 3.0
-    y: 0.0
+    ? &id001 {x: 13.0, y: 0.0}
+    : dstRoomId: room_finish
+      id: door_3_to_end
+      open: false
+      positionDoor: *id001
+    ? &id002 {x: 5.0, y: 14.0}
+    : dstRoomId: room_2
+      id: door_3_to_2
+      open: false
+      positionDoor: *id002
   enigmas:
-  - data:
-      correctOption: Pila
+    ? {x: 5.0, y: 10.0}
+    : correctOption: RAM
+      id: inf_03
+      key: null
+      options: [RAM, ROM, SSD, HDD]
+      question: Quale di questi tipi di memoria è volatile?
+    ? {x: 13.0, y: 13.0}
+    : correctOption: main()
+      id: inf_04
+      key: null
+      options: [start(), run(), main(), init()]
+      question: Qual è il metodo che indica punto di ingresso in un'applicazione Java?
+    ? {x: 3.0, y: 8.0}
+    : correctOption: '32'
+      id: mat_03
+      key: null
+      options: ['10', '25', '32', '64']
+      question: Quanto fa 2^5?
+    ? {x: 9.0, y: 2.0}
+    : correctOption: Seconda
+      id: log_02
+      key: !!it.unibo.impl.templates.KeyTemplate
+        dst: !!it.unibo.impl.DoorImpl
+          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
+          id: door_3_to_end
+          open: false
+        id: key_gold
+        name: Chiave d'oro
+      options: [Prima, Seconda, Terza, Penultima]
+      question: se durante una gara superi il secondo, in che posizione ti trovi?
+  id: room_3
+  size: 15
+- !!it.unibo.storage.rooms.DataForRooms
+  doors:
+    ? &id003 {x: 10.0, y: 14.0}
+    : dstRoomId: room_3
+      id: door2_to_3
+      open: false
+      positionDoor: *id003
+    ? &id004 {x: 3.0, y: 0.0}
+    : dstRoomId: start_room
+      id: door2_to_1
+      open: false
+      positionDoor: *id004
+  enigmas:
+    ? {x: 5.0, y: 10.0}
+    : correctOption: Pila
       id: inf_02
       key: !!it.unibo.impl.templates.KeyTemplate
         dst: !!it.unibo.impl.DoorImpl
           dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
           id: door2_to_3
           open: false
-        id: 2_to_3
+        id: key_silver
         name: Chiave d'argento
       options: [Coda, Lista, Pila, Albero]
       question: Quale struttura dati segue il principio LIFO?
-    x: 5.0
-    y: 10.0
-  - data:
-      correctOption: '17'
+    ? {x: 11.0, y: 3.0}
+    : correctOption: '17'
       id: mat_02
       key: null
       options: ['9', '15', '17', '21']
       question: Quale tra i seguenti numeri è un numero primo?
-    x: 11.0
-    y: 3.0
-  - data:
-      correctOption: Maria
+    ? {x: 1.0, y: 11.0}
+    : correctOption: Maria
       id: log_01
       key: null
       options: [Nunu, Nina, Anna, Maria]
       question: 'Il padre di Maria ha 5 figlie: Nana, Nene, Nini, Nono. Come si chiama
         la quinta?'
-    x: 1.0
-    y: 11.0
   id: room_2
   size: 15
 - !!it.unibo.storage.rooms.DataForRooms
   doors:
-  - data: {dstRoomId: room_2, id: door_3_to_2, open: false}
-    x: 5.0
-    y: 14.0
+    ? &id005 {x: 10.0, y: 14.0}
+    : dstRoomId: room_2
+      id: door1_to_2
+      open: false
+      positionDoor: *id005
   enigmas:
-  - data:
-      correctOption: RAM
-      id: inf_03
+    ? {x: 4.0, y: 4.0}
+    : correctOption: '10'
+      id: inf_01
       key: null
-      options: [RAM, ROM, SSD, HDD]
-      question: Quale di questi tipi di memoria è volatile?
-    x: 5.0
-    y: 10.0
-  - data:
-      correctOption: main()
-      id: inf_04
-      key: null
-      options: [start(), run(), main(), init()]
-      question: Qual è il metodo che indica punto di ingresso in un'applicazione Java?
-    x: 13.0
-    y: 13.0
-  - data:
-      correctOption: '32'
-      id: mat_03
-      key: null
-      options: ['10', '25', '32', '64']
-      question: Quanto fa 2^5?
-    x: 3.0
-    y: 8.0
-  - data:
-      correctOption: Seconda
-      id: log_02
+      options: ['10', '12', '101', '20']
+      question: A quanto equivale 1010 in base decimale?
+    ? {x: 1.0, y: 11.0}
+    : correctOption: '20'
+      id: mat_01
       key: !!it.unibo.impl.templates.KeyTemplate
-        dst: !!it.unibo.impl.DoorImpl {dstRoom: null, id: door_3_to_2, open: false}
-        id: 1_to_2
+        dst: !!it.unibo.impl.DoorImpl
+          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
+          id: door1_to_2
+          open: false
+        id: key_bronze
         name: Chiave di bronzo
-      options: [Prima, Seconda, Terza, Penultima]
-      question: se durante una gara superi il secondo, in che posizione ti trovi?
-    x: 9.0
-    y: 2.0
-  id: room_3
+      options: ['32', '20', '16', '64']
+      question: Quanto fa 4 + 4 * 4?
+  id: start_room
   size: 15

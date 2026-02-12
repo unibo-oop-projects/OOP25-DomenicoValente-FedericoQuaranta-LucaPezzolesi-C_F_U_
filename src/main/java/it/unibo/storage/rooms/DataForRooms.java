@@ -1,7 +1,8 @@
 package it.unibo.storage.rooms;
 
-import java.util.List;
+import java.util.Map;
 
+import it.unibo.api.Position;
 import it.unibo.storage.enigma.DataForEnigmas;
 
     /**
@@ -21,11 +22,11 @@ public class DataForRooms {
     /**
      * the list of the enigma data of the room
      */
-    private List<EnigmaData> enigmas;
+    private Map<Position, DataForEnigmas> enigmas;
     /**
      * the list of the door data of the room
      */
-    private List<DoorData> doors;
+    private Map<Position, DataForDoor> doors;
 
     /**
      *  0 constructor
@@ -39,7 +40,7 @@ public class DataForRooms {
      * @param enigmas the enigmas list of the room
      * @param doors the doors list of the room
      */
-    public DataForRooms( String id, int size, List<EnigmaData> enigmas, List<DoorData> doors) {
+    public DataForRooms( String id, int size, Map<Position, DataForEnigmas> enigmas, Map<Position, DataForDoor> doors) {
         this.doors=doors;
         this.enigmas=enigmas;
         this.id=id;
@@ -66,7 +67,7 @@ public class DataForRooms {
      * gets the list of the enigmas of the room
      * @return the enigmas list
      */
-    public List<EnigmaData> getEnigmas() {
+    public Map<Position, DataForEnigmas> getEnigmas() {
         return this.enigmas;
     }
     
@@ -74,7 +75,7 @@ public class DataForRooms {
      * gets the list of the doors of the room
      * @return the roooms list
      */
-    public List<DoorData> getDoors() {
+    public Map<Position, DataForDoor> getDoors() {
         return this.doors;
     }
 
@@ -99,7 +100,7 @@ public class DataForRooms {
      * sets the enigmas list of the room
      * @param enigmas new enigmas of the room
      */
-    public void setEnigmas(final List<EnigmaData> enigmas) {
+    public void setEnigmas(final Map<Position, DataForEnigmas> enigmas) {
         this.enigmas = enigmas;
     }
 
@@ -107,53 +108,8 @@ public class DataForRooms {
      * sets the doors list of the room
      * @param doors new doors list of the room
      */
-    public void setDoors(final List<DoorData> doors) {
+    public void setDoors(final Map<Position, DataForDoor> doors) {
         this.doors = doors;
-    }
-
-    /**
-     * data template for enigma saving on rooms.yaml
-     */
-    public static class EnigmaData{
-        /**
-         * coordinate x of the enigma
-         */
-        public double x;
-        /**
-         * coordinate y of the enigma
-         */
-        public double y;
-        /**
-         * the enigmas data
-         */
-        public DataForEnigmas data;
-
-        /**
-         * 0 args constructor
-         */
-        public EnigmaData(){}
-    }
-    /**
-     * data template for door saving on rooms.yaml
-     */
-    public static class DoorData{
-        /**
-         * coordinate x of the door
-         */
-        public double x;
-        /**
-         * coordinate x of the door
-         */
-        public double y;
-        /**
-         * the enigmas data
-         */
-        public DataForDoor data;
-
-        /**
-         * 0 args constructor
-         */
-        public DoorData(){}
     }
 
 }

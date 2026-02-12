@@ -16,25 +16,25 @@ public class GameLauncher {
     
     public static void main(String[] args){
         //load world
-        RoomSave storagSave = new RoomSave();
+        final RoomSave storagSave = new RoomSave();
         storagSave.loadRooms();
 
-        List<Room> rooms = storagSave.getRooms();
+        final List<Room> rooms = storagSave.getRooms();
 
         if(rooms.isEmpty()){
             System.err.println("NO SUCH FILE YAML");
         }
 
         //config
-        Room startRoom = rooms.get(0);
-        Player player = new PlayerImpl(new Position(1, 1));
-        RoomManager roomManager = new RoomManagerImpl(player);
+        final Room startRoom = rooms.get(1);
+        final Player player = new PlayerImpl(new Position(1, 1));
+        final RoomManager roomManager = new RoomManagerImpl(player);
 
         roomManager.enterNextRoom(startRoom);
         Inventory.setMaxSize(3);
 
-        GameFrame mainWindow = new GameFrame(startRoom, player.getPosition());
-        GameEngine mainEngine = new GameEngine(mainWindow, roomManager);
+        final GameFrame mainWindow = new GameFrame(startRoom, player.getPosition());
+        final GameEngine mainEngine = new GameEngine(mainWindow, roomManager);
 
         mainWindow.setController(mainEngine);
         mainEngine.run();

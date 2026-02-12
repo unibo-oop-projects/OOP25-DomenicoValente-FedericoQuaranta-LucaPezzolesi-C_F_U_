@@ -41,63 +41,71 @@ public class RoomSave {
      */
     public RoomSave() {}
     
+    
     /**
-     * Saves the list of rooms to rooms.yml
-     * @param list the list of rooms to save
+     * gets the rooms 
+     * @return the list of the rooms
      */
-    public void saveRooms(final List<Room> list) {
-        final List<DataForRooms> saveList = new ArrayList<>();
+    public List<Room> getRooms() {
+        return new ArrayList<>(this.rooms);
+    }
 
-        list.stream().forEach(r -> {
-            if (r instanceof RoomTemplate) {
-                final RoomTemplate rt = (RoomTemplate) r;
-                final DataForRooms dto = new DataForRooms();
-                
-                dto.setId(rt.getId());
-                dto.setSize(rt.getSize());
+    public void save(final List<Room> list){
+        final List<DataForRooms> rooms = new ArrayList<>();
 
-                List<DataForRooms.DoorData> doorDataList = new ArrayList<>();
-                rt.getDoorGrid().forEach((pos, door) -> {
-                    Room dst = door.getDstRoom();
-                    String dstId = (dst instanceof RoomTemplate) ? ((RoomTemplate) dst).getId() : null;
+        list.stream().forEach(r->{
+            final RoomTemplate roomTemplate = (RoomTemplate) r;
+            final DataForRooms dataForRooms = new DataForRooms();
 
-                    if (dstId != null) {
-                        DataForRooms.DoorData dd = new DataForRooms.DoorData();
-                        dd.x = pos.getX();
-                        dd.y = pos.getY();
-                        dd.data = new DataForDoor(door.getId(), dstId, door.isOpen());
-                        doorDataList.add(dd);
-                    }
-                });
-                dto.setDoors(doorDataList);
+            dataForRooms.setId(roomTemplate.getId());
+            dataForRooms.setSize(roomTemplate.getSize());
 
-                List<DataForRooms.EnigmaData> enigmaDataList = new ArrayList<>();
-                rt.getEnigmaGrid().forEach((pos, enigma) -> {
-                    DataForRooms.EnigmaData ed = new DataForRooms.EnigmaData();
-                    ed.x = pos.getX();
-                    ed.y = pos.getY();
-                    ed.data = new DataForEnigmas(
-                        enigma.getId(), enigma.getQuestion(), enigma.getCorrectOption(), 
-                        enigma.getOptions(), enigma.getKey().orElse(null)
+            Map<Position, DataForDoor> doorDataList = new HashMap<>();
+            roomTemplate.getDoorGrid().forEach((pos, door) -> {
+                Room dst = door.getDstRoom();
+
+                String dstId = ((RoomTemplate) dst).getId();
+
+                if(dstId != null){
+                    DataForDoor doorData = new DataForDoor(
+                        door.getId(),
+                        dstId,
+                        door.isOpen(),
+                        pos
                     );
-                    enigmaDataList.add(ed);
-                });
-                dto.setEnigmas(enigmaDataList);
+                    doorDataList.put(pos, doorData);
+                }else{
+                    System.err.println("STANZA CON ID "+dstId+" NON TROVATA");
+                }
+            });
+            dataForRooms.setDoors(doorDataList);
 
-                saveList.add(dto);
-            }
+            Map<Position, DataForEnigmas> enigmaDataList = new HashMap<>();
+            roomTemplate.getEnigmaGrid().forEach((pos, enigma) -> {
+                DataForEnigmas ed = new DataForEnigmas(
+                    enigma.getId(), 
+                    enigma.getQuestion(), 
+                    enigma.getCorrectOption(), 
+                    enigma.getOptions(), 
+                    enigma.getKey().orElse(null)
+                    
+                );
+                enigmaDataList.put(pos, ed);
+            });
+            dataForRooms.setEnigmas(enigmaDataList);
+
+            rooms.add(dataForRooms);
         });
+
         final Yaml yamlWrite = new Yaml();
         try(FileWriter fw = new FileWriter(GameSettings.ROOM_YAML_FILES_DEFAULTPATH.getValue())) {
-            yamlWrite.dump(saveList, fw);
+            yamlWrite.dump(rooms, fw);
         } catch (IOException excep) {
             excep.printStackTrace();
         }
-    }
 
-    /**
-     * Loads the rooms list from rooms.yml
-     */
+    }
+    
     public void loadRooms() {
         final LoaderOptions loadOpt = new LoaderOptions();
         final TagInspector tagInsp = t -> t.getClassName().startsWith("it.unibo");
@@ -106,6 +114,12 @@ public class RoomSave {
         try(final InputStream fis = new FileInputStream(GameSettings.ROOM_YAML_FILES_DEFAULTPATH.getValue())) {
             final Yaml yamlRead = new Yaml(new Constructor(List.class, loadOpt));
             final List<DataForRooms> rawData = yamlRead.load(fis);
+
+            if (rawData == null) {
+                System.err.println("Il file YAML è vuoto o non è stato interpretato come lista!");
+            } else {
+                System.out.println("Caricate " + rawData.size() + " voci dal file.");
+            }
 
             Optional.ofNullable(rawData).ifPresent(data -> {
                 final Map<String, RoomTemplate> registry = createRoomShells(data);
@@ -118,15 +132,6 @@ public class RoomSave {
         } catch (final Exception excep) {
             excep.printStackTrace();
         }
-       
-    }
-
-    /**
-     * gets the rooms 
-     * @return the list of the rooms
-     */
-    public List<Room> getRooms() {
-        return new ArrayList<>(this.rooms);
     }
 
     /**
@@ -148,19 +153,18 @@ public class RoomSave {
      * @param enigmaEntries The list of enigma data objects to be converted.
      * @return A map associating each {@link Position} with its corresponding {@link Enigma}.
      */
-    private  Map<Position,Enigma> buildEnigmaMap(List<DataForRooms.EnigmaData> enigmaEntries){
+    private  Map<Position,Enigma> buildEnigmaMap(Map<Position,DataForEnigmas> enigmaEntries){
         Map<Position,Enigma> enigmaMap= new HashMap<>();
        
         Optional.ofNullable(enigmaEntries)
-        .orElse(Collections.emptyList())
-        .forEach(entry -> {
-            Position pos=new Position(entry.x, entry.y);
+        .orElse(Collections.emptyMap())
+        .forEach((pos,entry) -> { 
             Enigma enigma=new EnigmaTemplate(
-                entry.data.getId(),
-                entry.data.getKey(),
-                entry.data.getQuestion(),
-                entry.data.getOptions(),
-                entry.data.getCorrectOption() 
+                entry.getId(),
+                entry.getKey(),
+                entry.getQuestion(),
+                entry.getOptions(),
+                entry.getCorrectOption()
             );
             enigmaMap.put(pos, enigma);
         });
@@ -173,21 +177,21 @@ public class RoomSave {
      * @param registry The map of all available room templates, used to resolve destinations.
      * @return A map associating each {@link Position} with its corresponding {@link Door}.
      */
-    private  Map<Position,Door> buildDoorMap(List<DataForRooms.DoorData> doorEntries, Map<String,RoomTemplate> registry){
+    private  Map<Position,Door> buildDoorMap(Map<Position, DataForDoor> doorEntries, Map<String,RoomTemplate> registry){
         Map<Position,Door> doorMap= new HashMap<>();
        
         Optional.ofNullable(doorEntries)
-        .orElse(Collections.emptyList())
-        .forEach(entry -> {
+        .orElse(Collections.emptyMap())
+        .forEach((pos, entry) -> {
             
-            Room dstRoom=Optional.ofNullable(registry.get(entry.data.getDstRoomId()))
-            .orElseThrow(() -> new IllegalArgumentException("the door "+entry.data.getId()+" point to a non-existent room"));
+            Room dstRoom=Optional.ofNullable(registry.get(entry.getDstRoomId()))
+            .orElseThrow(() -> new IllegalArgumentException("the door "+entry.getId()+" point to a non-existent room"));
 
-            Door door= new DoorImpl(entry.data.getId(), dstRoom);
-            if(entry.data.isOpen()){
+            Door door= new DoorImpl(entry.getId(), dstRoom);
+            if(entry.isOpen()){
                 door.setOpen(true);
             }
-            doorMap.put(new Position(entry.x,entry.y), door);
+            doorMap.put(pos, door);
         });
         return doorMap;
     }

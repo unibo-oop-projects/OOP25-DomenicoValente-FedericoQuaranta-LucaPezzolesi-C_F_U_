@@ -1,9 +1,13 @@
 package it.unibo.storage.rooms;
 
+import it.unibo.api.Position;
+
 /**
  * data template for Doors saving on yaml
  */
 public class DataForDoor {
+    private  Position positionDoor;
+
     /**
     * thw id of the door
     */
@@ -29,11 +33,13 @@ public class DataForDoor {
      * @param id the id of the door
      * @param dstRoomId the id of the the destination room
      * @param open if the door is open
+     * @param positionDoor the position of the door
      */
-    public DataForDoor(final String id, final String dstRoomId, final boolean open) {
+    public DataForDoor(final String id, final String dstRoomId, final boolean open, final Position positionDoor) {
         this.id = id;
         this.dstRoomId = dstRoomId;
         this.open = open;
+        this.positionDoor=positionDoor;
     }
 
     /**
@@ -82,6 +88,13 @@ public class DataForDoor {
      */
     public void setOpen(final boolean open) {
         this.open = open;
+    }
+    public Position getPositionDoor() {
+        return positionDoor;
+    }
+
+    public void setPositionDoor(Position positionDoor) {
+        this.positionDoor = positionDoor;
     }
    
 }
