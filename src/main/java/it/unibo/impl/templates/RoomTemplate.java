@@ -220,6 +220,7 @@ public class RoomTemplate implements Room, java.io.Serializable {
      * setter for snakeYaml
      * @param id .
      */
+    @SuppressWarnings("unused")
     private void setId(final String id) {
         this.id = id;
     }
@@ -228,6 +229,7 @@ public class RoomTemplate implements Room, java.io.Serializable {
      * setter for snakeYaml
      * @param grid .
      */
+    @SuppressWarnings("unused")
     private void setGrid(final Map<Position, RoomCellsValues> map) {
         this.grid = map;
     }
@@ -236,6 +238,7 @@ public class RoomTemplate implements Room, java.io.Serializable {
      * setter for snakeYaml
      * @param map .
      */
+    @SuppressWarnings("unused")
     private void setEnigmaGrid(final Map<Position, Enigma> map) {
         this.enigmaGrid = map;
     }
@@ -244,6 +247,7 @@ public class RoomTemplate implements Room, java.io.Serializable {
      * setter for snakeYaml
      * @param map .
      */
+    @SuppressWarnings("unused")
     private void setDoorGrid(final Map<Position, Door> map) {
         this.doorGrid = map;
     }
@@ -252,6 +256,7 @@ public class RoomTemplate implements Room, java.io.Serializable {
      * getter for snakeYaml
      * @return .
      */
+    @SuppressWarnings("unused")
     private Map<Position, RoomCellsValues> getGrid() {
         return this.grid;
     }
