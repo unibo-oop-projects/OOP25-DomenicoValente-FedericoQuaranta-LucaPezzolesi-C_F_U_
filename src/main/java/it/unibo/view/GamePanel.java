@@ -58,7 +58,9 @@ public class GamePanel extends JPanel implements KeyListener {
         this.room = room;
         this.playerPosition = playerPosition;
         this.setFocusable(true);
+        this.requestFocusInWindow();
         this.addKeyListener(this);
+        this.setDoubleBuffered(true);
         try {
             freeImage = ImageIO.read(getClass().getResource("/free.png"));
             obstacleImage = ImageIO.read(getClass().getResource("/obstacle.png"));
@@ -93,30 +95,46 @@ public class GamePanel extends JPanel implements KeyListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (room == null || playerPosition == null) return;
 
-        if (room == null) return;
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int x = room.getSize();
-        int y = room.getSize();
+        int roomSize = room.getSize();
+        
+        double cellWidth = (double) getWidth() / roomSize;
+        double cellHeight = (double) getHeight() / roomSize;
 
-        double cellWidth = (double) getWidth() / x;
-        double cellHeight = (double) getHeight() / y;
-
-        for(int i=0; i<x; i++){
-            for(int j=0; j<y; j++){
+        for (int i = 0; i < roomSize; i++) {
+            for (int j = 0; j < roomSize; j++) {
                 BufferedImage tile;
-                switch(room.getCellContent(new Position(i, j))){
+                switch (room.getCellContent(new Position(i, j))) {
                     case OBSTACLE: tile = obstacleImage; break;
-                    case WALL: tile = wallImage; break;
-                    case DOOR: tile = doorImage; break;
-                    case ENIGMA: tile = enigmaImage; break; 
-                    default: tile = freeImage; break;
+                    case WALL:     tile = wallImage;     break;
+                    case DOOR:     tile = doorImage;     break;
+                    case ENIGMA:   tile = enigmaImage;   break; 
+                    default:       tile = freeImage;     break;
                 }
-                g.drawImage(tile, (int) (i*cellWidth), (int) (j*cellHeight), (int) cellWidth, (int) cellHeight, null);
+                
+                if (tile != null) {
+                    g2.drawImage(tile, 
+                        (int) Math.round(i * cellWidth), 
+                        (int) Math.round(j * cellHeight), 
+                        (int) Math.ceil(cellWidth), 
+                        (int) Math.ceil(cellHeight), 
+                        null);
+                }
             }
         }
 
-        g.drawImage(playerImage, (int) (playerPosition.getX()*cellWidth), (int) (playerPosition.getY()*cellHeight), (int) cellWidth, (int) cellHeight, null);
+        if (playerImage != null) {
+            g2.drawImage(playerImage, 
+                (int) Math.round(playerPosition.getX() * cellWidth), 
+                (int) Math.round(playerPosition.getY() * cellHeight), 
+                (int) Math.ceil(cellWidth), 
+                (int) Math.ceil(cellHeight), 
+                null);
+        }
     }
 
     @Override
@@ -137,7 +155,9 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        controller.catchCommand(new StopMovement());
+        if(controller != null) {
+            controller.catchCommand(new StopMovement());
+        }
     }
 
     /**

@@ -22,8 +22,6 @@ public class GameEngine implements Controller {
     private Command currentCommand;
     private View view;
     private RoomManager model;
-    private Vector2D v2d;
-    private long nextCurrentCycleStartTime;
 
     /**
      * basic constructor
@@ -55,7 +53,11 @@ public class GameEngine implements Controller {
 
             this.waitUntilNextFrame(currentCycleStartTime);
 
-            previousCycleStartTime = nextCurrentCycleStartTime;
+            if (enigma.isPresent()) {
+                previousCycleStartTime = System.nanoTime(); 
+            } else {
+                previousCycleStartTime = currentCycleStartTime;
+            }
         }
     }
 
@@ -88,7 +90,7 @@ public class GameEngine implements Controller {
      */
     private Optional<Enigma> update(double elapsed, Vector2D v2d) {
         Position currentPosition = model.getCurrentPosition();
-        Position nextPosition = currentPosition.sum(v2d.mul(1*elapsed));
+        Position nextPosition = currentPosition.sum(v2d.mul(4*elapsed));
         int xFloor = (int) Math.floor(nextPosition.getX());
         int yFloor = (int) Math.floor(nextPosition.getY());
         int xCeil = (int) Math.ceil(nextPosition.getX());
@@ -152,7 +154,6 @@ public class GameEngine implements Controller {
      */
     private void render(Optional<Enigma> enigma) {
         view.updateView(model.getCurrentRoom(), model.getCurrentPosition(), enigma);
-        nextCurrentCycleStartTime = System.nanoTime();
     }
 
     /**
@@ -160,8 +161,7 @@ public class GameEngine implements Controller {
      */
     private Vector2D processInput() {
         if (currentCommand != null){
-			v2d = currentCommand.execute();
-            return v2d;
+			return currentCommand.execute();
 		}  
         return new Vector2D(0, 0);
     }
