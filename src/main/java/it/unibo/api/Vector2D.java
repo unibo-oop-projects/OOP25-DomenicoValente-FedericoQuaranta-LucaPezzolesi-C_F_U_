@@ -21,7 +21,7 @@ public class Vector2D {
     /**
      * sum between two vectors
      * @param v the vector to sum to this vector
-     * @return a new {@link Vector2d}
+     * @return a new {@link Vector2D}
      */
     public Vector2D sum(final Vector2D v) {
         return new Vector2D(x + v.getX(), y + v.getY());
@@ -30,7 +30,7 @@ public class Vector2D {
     /**
      * multiplication between a vector and a factor
      * @param fact the factor to multiply this vector with
-     * @return a new {@link Vector2d}
+     * @return a new {@link Vector2D}
      */
     public Vector2D mul(double fact) {
         return new Vector2D(x * fact, this.getY() * fact);

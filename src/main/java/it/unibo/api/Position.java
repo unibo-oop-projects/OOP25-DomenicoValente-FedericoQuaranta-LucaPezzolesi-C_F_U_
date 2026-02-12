@@ -2,14 +2,14 @@ package it.unibo.api;
 
 /**
  * simple class that models a 2-dimensional point
- * @param x x
- * @param y y
  */
 public class Position  implements java.io.Serializable {
 
+    /** the x param */
     private double x;
+    
+    /** the y param */
     private double y;
-
     
     /**
      * constructor
@@ -22,7 +22,7 @@ public class Position  implements java.io.Serializable {
     }
 
     /**
-     * sums this position with the {@link Vector2d} specified
+     * sums this position with the {@link Vector2D} specified
      * @param v the vector to sum with
      * @return the new Position2d
      */
@@ -31,7 +31,7 @@ public class Position  implements java.io.Serializable {
     }
 
     /**
-     * subtracts this position with the {@link Vector2d} specified
+     * subtracts this position with the {@link Vector2D} specified
      * @param v the vector to subtract
      * @return the new Position2d
      */
