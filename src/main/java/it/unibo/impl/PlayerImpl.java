@@ -15,29 +15,12 @@ public class PlayerImpl implements Player, java.io.Serializable {
      */
     private Position position;
 
-     /**
-     * The score of the player
-     */
-    private Integer score;
-
     /**
      * constructor
      * @param position the position (x,y) where the player born 
      */
     public PlayerImpl(Position position){
         this.position=position;
-        this.score=0;
-    }
-
-    @Override
-    public void addPoints() {
-        this.score++;
-        
-    }
-
-    @Override
-    public int getPoints() {
-        return this.score;
     }
 
     @Override

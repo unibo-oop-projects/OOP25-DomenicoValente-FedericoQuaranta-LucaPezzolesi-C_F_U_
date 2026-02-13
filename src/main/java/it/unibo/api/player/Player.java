@@ -18,15 +18,4 @@ public interface Player {
      * @param nextPosition the position where the player wants to move
      */
     void move(Position nextPosition);
-
-    /**
-     * update the score that the player holds
-     */
-    void addPoints();
-
-    /**
-     * gets the current points of the player
-     * @return the points
-     */
-    int getPoints();
 };

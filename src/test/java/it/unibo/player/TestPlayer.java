@@ -23,7 +23,6 @@ public class TestPlayer{
     @Test
     void testInitialization(){
         assertEquals(this.startPosition, this.player.getPosition());
-        assertEquals(0,this.player.getPoints());
     }
 
     @Test
@@ -33,16 +32,5 @@ public class TestPlayer{
 
         assertEquals(newPos, this.player.getPosition());
         assertNotEquals(this.startPosition, this.player.getPosition());
-    }
-
-    @Test
-    void testScore(){
-        assertEquals(0, this.player.getPoints());
-        
-        this.player.addPoints();
-        assertEquals(1, this.player.getPoints());
-
-        this.player.addPoints();
-        assertEquals(2, this.player.getPoints());
     }
 }
