@@ -114,26 +114,38 @@ public class GameEngine implements Controller {
             boolean eventUp = model.isEnteringAnEvent(roundUpNextPosition);
             boolean eventDownUp = model.isEnteringAnEvent(roundDownUpNextPosition);
             boolean eventUpDown = model.isEnteringAnEvent(roundUpDownNextPosition);
-            if(eventDown == true) {
+            if(eventDown) {
+                Room vecchiaStanza = model.getCurrentRoom();
                 model.enterDoor(roundDownNextPosition, rooms);
-                if(model.getCurrentRoom() != null) {
+                // Controllo l'enigma solo se la stanza NON è cambiata
+                if(model.getCurrentRoom() == vecchiaStanza) {
                     return model.enterEnigma(roundDownNextPosition);
                 }
-            } else if (eventUp == true) {
+                return Optional.empty(); // Stanza cambiata con successo, esci!
+                
+            } else if (eventUp) {
+                Room vecchiaStanza = model.getCurrentRoom();
                 model.enterDoor(roundUpNextPosition, rooms);
-                if(model.getCurrentRoom() != null) {
+                if(model.getCurrentRoom() == vecchiaStanza) {
                     return model.enterEnigma(roundUpNextPosition);
                 }
-            } else if (eventDownUp == true) {
+                return Optional.empty();
+                
+            } else if (eventDownUp) {
+                Room vecchiaStanza = model.getCurrentRoom();
                 model.enterDoor(roundDownUpNextPosition, rooms);
-                if(model.getCurrentRoom() != null) {
+                if(model.getCurrentRoom() == vecchiaStanza) {
                     return model.enterEnigma(roundDownUpNextPosition);
                 }
-            } else if (eventUpDown == true) {
+                return Optional.empty();
+                
+            } else if (eventUpDown) {
+                Room vecchiaStanza = model.getCurrentRoom();
                 model.enterDoor(roundUpDownNextPosition, rooms);
-                if(model.getCurrentRoom() != null) {
+                if(model.getCurrentRoom() == vecchiaStanza) {
                     return model.enterEnigma(roundUpDownNextPosition);
                 }
+                return Optional.empty();
             }
             if(collidingDown == true) {
                 model.computeMove(true, roundUpNextPosition);

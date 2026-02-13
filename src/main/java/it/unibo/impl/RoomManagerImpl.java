@@ -9,7 +9,6 @@ import it.unibo.api.player.Player;
 import it.unibo.api.rooms.Room;
 import it.unibo.api.rooms.RoomCellsValues;
 import it.unibo.api.rooms.RoomManager;
-import it.unibo.impl.templates.RoomTemplate;
 
 /**
  * implementation of {@link RoomManager} 
@@ -87,16 +86,35 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
     @Override
     public void enterDoor(final Position posDoor, final List<Room> rooms){ 
         if(this.currentRoom.getCellContent(posDoor) == RoomCellsValues.DOOR) {
+            
+            // 1. La porta è aperta?
             if(this.currentRoom.getDoor(posDoor).isOpen()){
+                
+                // Prendo l'ID e tolgo eventuali spazi vuoti iniziali/finali
+                String targetRoomId = this.currentRoom.getDoor(posDoor).getDstRoomId().trim();
+                System.out.println("DEBUG: Toccata porta verso -> '" + targetRoomId + "'");
+                
                 Room nextRoom = null;    
+                
+                // 2. Cerco la stanza nella lista usando .equals()
                 for(Room r: rooms){
-                        if(this.currentRoom.getDoor(posDoor).getDstRoomId() == r.getId()){
-                            nextRoom = new RoomTemplate(r.getId());
-                            nextRoom.setLayout(r.getSize(), r.getDoorGrid(), r.getEnigmaGrid()); 
-                        }
+                    if(targetRoomId.equals(r.getId().trim())){
+                        nextRoom = r; 
+                        break;
                     }
+                }
+                
+                // 3. Entro nella stanza se l'ho trovata
+                if (nextRoom != null) {
+                    System.out.println("DEBUG: Stanza trovata! Cambio stanza...");
                     enterNextRoom(nextRoom);
                     computeMove(true, new Position(1, 1));
+                } else {
+                    System.err.println("ERRORE: La stanza '" + targetRoomId + "' non esiste nella lista!");
+                }
+                
+            } else {
+                System.out.println("DEBUG: Hai toccato la porta, ma è CHIUSA!");
             }
         }
     }

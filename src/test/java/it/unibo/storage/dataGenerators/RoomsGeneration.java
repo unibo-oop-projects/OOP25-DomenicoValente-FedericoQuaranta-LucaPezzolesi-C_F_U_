@@ -70,6 +70,7 @@ public class RoomsGeneration {
         //configurazione stanza 3
         final Door door3_to_2 = new DoorImpl("door_3_to_2", secondRoom.getId());
         final Door door3_to_end = new DoorImpl("door_3_to_end", finishRoom.getId());
+        door3_to_2.setOpen(true);
         
         Map<Position, Door> doors3 = new HashMap<>();
         doors3.put(new Position(5, 14), door3_to_2); 
@@ -90,7 +91,8 @@ public class RoomsGeneration {
         //configurazione stanza 2
         final Door door2_to_1 = new DoorImpl("door2_to_1", startRoom.getId());
         final Door door2_to_3 = new DoorImpl("door2_to_3", thirdRoom.getId());
-        
+        door2_to_1.setOpen(true);
+
         Map<Position, Door> doors2 = new HashMap<>();
         doors2.put(new Position(10, 14), door2_to_3); 
         doors2.put(new Position(3, 0), door2_to_1);

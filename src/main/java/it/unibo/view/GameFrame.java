@@ -100,6 +100,11 @@ public class GameFrame extends JFrame implements View {
                         } else {
                             JOptionPane.showMessageDialog(null, "true, there is no key");
                         }
+                        if (room.getDoorGrid() != null) {
+                            for (Position pos : room.getDoorGrid().keySet()) {
+                                room.getDoor(pos).setOpen(true);
+                            }
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "false, try again");
                     }

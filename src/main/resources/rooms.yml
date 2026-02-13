@@ -13,7 +13,7 @@
     ? &id002 {x: 5.0, y: 14.0}
     : dstRoomId: room_2
       id: door_3_to_2
-      open: false
+      open: true
       positionDoor: *id002
   enigmas:
     ? {x: 5.0, y: 10.0}
@@ -55,7 +55,7 @@
     ? &id004 {x: 3.0, y: 0.0}
     : dstRoomId: start_room
       id: door2_to_1
-      open: false
+      open: true
       positionDoor: *id004
   enigmas:
     ? {x: 5.0, y: 10.0}
