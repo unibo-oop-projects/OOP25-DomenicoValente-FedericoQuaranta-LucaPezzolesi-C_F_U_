@@ -17,7 +17,7 @@ public class DoorImpl implements Door, java.io.Serializable {
      /**
      * The destination room
      */
-    private Room dstRoom;
+    private String dstRoomId;
 
      /**
      * indicates if the door is open
@@ -32,8 +32,8 @@ public class DoorImpl implements Door, java.io.Serializable {
      * @param id this door's id
      * @param dstRoom the destination {@link Room}
      */
-    public DoorImpl(final String id, final Room dstRoom) {
-        this.dstRoom = dstRoom;
+    public DoorImpl(final String id, final String dstRoomId) {
+        this.dstRoomId = dstRoomId;
         this.open = false;
         this.id = id;
     }
@@ -49,8 +49,8 @@ public class DoorImpl implements Door, java.io.Serializable {
     }
 
     @Override
-    public Room getDstRoom() {
-        return this.dstRoom;
+    public String getDstRoomId() {
+        return this.dstRoomId;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class DoorImpl implements Door, java.io.Serializable {
      * sets the destination room
      * @param room the dst room
      */
-    public void setDstRoom(final Room room) {
-        this.dstRoom = room;
+    public void setDstRoom(final String roomId) {
+        this.dstRoomId = roomId;
     }
 
 }

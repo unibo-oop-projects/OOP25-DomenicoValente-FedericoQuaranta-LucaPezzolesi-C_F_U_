@@ -78,10 +78,7 @@ public class RoomTemplate implements Room, java.io.Serializable {
         throw new IllegalArgumentException("no such enigm in this room");
     }
 
-    /**
-     * gets the id of this room
-     * @return this id
-     */
+    @Override
     public String getId() {
         return this.id;
     }

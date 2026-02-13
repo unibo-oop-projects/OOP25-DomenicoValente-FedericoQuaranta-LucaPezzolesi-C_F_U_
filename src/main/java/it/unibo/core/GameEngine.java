@@ -1,10 +1,12 @@
 package it.unibo.core;
 
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.api.Position;
 import it.unibo.api.Vector2D;
 import it.unibo.api.enigmas.Enigma;
+import it.unibo.api.rooms.Room;
 import it.unibo.api.rooms.RoomManager;
 import it.unibo.input.Command;
 import it.unibo.input.Controller;
@@ -22,16 +24,18 @@ public class GameEngine implements Controller {
     private Command currentCommand;
     private View view;
     private RoomManager model;
+    private List<Room> rooms;
 
     /**
      * basic constructor
      * @param view the view
      * @param model the model
      */
-    public GameEngine(View view, RoomManager model) {
+    public GameEngine(View view, RoomManager model, List<Room> rooms) {
         this.currentCommand = new StopMovement();
         this.view = view;
         this.model = model;
+        this.rooms = rooms;
      }
 
     /**
@@ -111,22 +115,22 @@ public class GameEngine implements Controller {
             boolean eventDownUp = model.isEnteringAnEvent(roundDownUpNextPosition);
             boolean eventUpDown = model.isEnteringAnEvent(roundUpDownNextPosition);
             if(eventDown == true) {
-                model.enterDoor(roundDownNextPosition);
+                model.enterDoor(roundDownNextPosition, rooms);
                 if(model.getCurrentRoom() != null) {
                     return model.enterEnigma(roundDownNextPosition);
                 }
             } else if (eventUp == true) {
-                model.enterDoor(roundUpNextPosition);
+                model.enterDoor(roundUpNextPosition, rooms);
                 if(model.getCurrentRoom() != null) {
                     return model.enterEnigma(roundUpNextPosition);
                 }
             } else if (eventDownUp == true) {
-                model.enterDoor(roundDownUpNextPosition);
+                model.enterDoor(roundDownUpNextPosition, rooms);
                 if(model.getCurrentRoom() != null) {
                     return model.enterEnigma(roundDownUpNextPosition);
                 }
             } else if (eventUpDown == true) {
-                model.enterDoor(roundUpDownNextPosition);
+                model.enterDoor(roundUpDownNextPosition, rooms);
                 if(model.getCurrentRoom() != null) {
                     return model.enterEnigma(roundUpDownNextPosition);
                 }

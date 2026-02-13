@@ -45,7 +45,7 @@ public class TestRoom {
     @Test
     void testExeptionsThrowing() {
         this.doorMap = new HashMap<>();
-        this.doorMap.put(new Position(90, 54), new DoorImpl("testId", new RoomTemplate("testId")));
+        this.doorMap.put(new Position(90, 54), new DoorImpl("testId", "testIDRoom"));
 
         this.enigmaMap = new HashMap<>();
         this.enigmaMap.put(new Position(90, 54), new EnigmaTemplate("testId", null , "q", List.of("1"), "1"));
@@ -66,8 +66,8 @@ public class TestRoom {
 
     private Map<Position, Door> initializeDoorMap() {
         final Map<Position, Door> doorrMap = new HashMap<>();
-        doorrMap.put(new Position(0, 3), new DoorImpl("testDoor1", new RoomTemplate("dstRoom1")));
-        doorrMap.put(new Position(3, 2), new DoorImpl("testDoor2", new RoomTemplate("dstRoom2")));
+        doorrMap.put(new Position(0, 3), new DoorImpl("testDoor1", "dstRoom1"));
+        doorrMap.put(new Position(3, 2), new DoorImpl("testDoor2", "dstRoom2"));
         return doorrMap;
     }
 

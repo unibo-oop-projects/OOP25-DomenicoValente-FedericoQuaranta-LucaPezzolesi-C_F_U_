@@ -34,7 +34,7 @@ public class GameLauncher {
         Inventory.setMaxSize(3);
 
         final GameFrame mainWindow = new GameFrame(startRoom, player.getPosition());
-        final GameEngine mainEngine = new GameEngine(mainWindow, roomManager);
+        final GameEngine mainEngine = new GameEngine(mainWindow, roomManager, rooms);
 
         mainWindow.setController(mainEngine);
         mainEngine.run();

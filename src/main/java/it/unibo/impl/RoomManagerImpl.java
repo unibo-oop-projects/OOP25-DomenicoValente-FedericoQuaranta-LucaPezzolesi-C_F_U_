@@ -1,5 +1,6 @@
 package it.unibo.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.api.Position;
@@ -8,6 +9,7 @@ import it.unibo.api.player.Player;
 import it.unibo.api.rooms.Room;
 import it.unibo.api.rooms.RoomCellsValues;
 import it.unibo.api.rooms.RoomManager;
+import it.unibo.impl.templates.RoomTemplate;
 
 /**
  * implementation of {@link RoomManager} 
@@ -83,10 +85,17 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
     }
 
     @Override
-    public void enterDoor(final Position posDoor){ 
+    public void enterDoor(final Position posDoor, final List<Room> rooms){ 
         if(this.currentRoom.getCellContent(posDoor) == RoomCellsValues.DOOR) {
             if(this.currentRoom.getDoor(posDoor).isOpen()){
-                    enterNextRoom(this.currentRoom.getDoor(posDoor).getDstRoom());
+                Room nextRoom = null;    
+                for(Room r: rooms){
+                        if(this.currentRoom.getDoor(posDoor).getDstRoomId() == r.getId()){
+                            nextRoom = new RoomTemplate(r.getId());
+                            nextRoom.setLayout(r.getSize(), r.getDoorGrid(), r.getEnigmaGrid()); 
+                        }
+                    }
+                    enterNextRoom(nextRoom);
                     computeMove(true, new Position(1, 1));
             }
         }

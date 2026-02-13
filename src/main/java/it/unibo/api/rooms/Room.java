@@ -73,4 +73,10 @@ public interface Room {
      */
     public int getSize();
 
+    /**
+     * gets the id of this room
+     * @return the id of this room
+     */
+    public String getId();
+
 }

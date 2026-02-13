@@ -62,9 +62,8 @@ public class RoomSave {
 
             Map<Position, DataForDoor> doorDataList = new HashMap<>();
             roomTemplate.getDoorGrid().forEach((pos, door) -> {
-                Room dst = door.getDstRoom();
 
-                String dstId = ((RoomTemplate) dst).getId();
+                String dstId = door.getDstRoomId();
 
                 if(dstId != null){
                     DataForDoor doorData = new DataForDoor(
@@ -183,11 +182,7 @@ public class RoomSave {
         Optional.ofNullable(doorEntries)
         .orElse(Collections.emptyMap())
         .forEach((pos, entry) -> {
-            
-            Room dstRoom=Optional.ofNullable(registry.get(entry.getDstRoomId()))
-            .orElseThrow(() -> new IllegalArgumentException("the door "+entry.getId()+" point to a non-existent room"));
-
-            Door door= new DoorImpl(entry.getId(), dstRoom);
+            Door door= new DoorImpl(entry.getId(), entry.getDstRoomId());
             if(entry.isOpen()){
                 door.setOpen(true);
             }

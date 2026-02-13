@@ -68,8 +68,8 @@ public class RoomsGeneration {
         finishRoom.setLayout(15, new HashMap<Position, Door>(), new HashMap<Position, Enigma>());
 
         //configurazione stanza 3
-        final Door door3_to_2 = new DoorImpl("door_3_to_2", secondRoom);
-        final Door door3_to_end = new DoorImpl("door_3_to_end", finishRoom);
+        final Door door3_to_2 = new DoorImpl("door_3_to_2", secondRoom.getId());
+        final Door door3_to_end = new DoorImpl("door_3_to_end", finishRoom.getId());
         
         Map<Position, Door> doors3 = new HashMap<>();
         doors3.put(new Position(5, 14), door3_to_2); 
@@ -88,8 +88,8 @@ public class RoomsGeneration {
 
         
         //configurazione stanza 2
-        final Door door2_to_1 = new DoorImpl("door2_to_1", startRoom);
-        final Door door2_to_3 = new DoorImpl("door2_to_3", thirdRoom);
+        final Door door2_to_1 = new DoorImpl("door2_to_1", startRoom.getId());
+        final Door door2_to_3 = new DoorImpl("door2_to_3", thirdRoom.getId());
         
         Map<Position, Door> doors2 = new HashMap<>();
         doors2.put(new Position(10, 14), door2_to_3); 
@@ -106,7 +106,7 @@ public class RoomsGeneration {
         secondRoom.setLayout(15, doors2, enigmas2);
 
         //configurazone stanza 1
-        final Door door1_to_2 = new DoorImpl("door1_to_2", secondRoom);
+        final Door door1_to_2 = new DoorImpl("door1_to_2", secondRoom.getId());
         
         Map<Position, Door> doors1 = new HashMap<>();
         doors1.put(new Position(10, 14), door1_to_2);

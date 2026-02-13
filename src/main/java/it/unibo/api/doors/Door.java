@@ -1,6 +1,5 @@
 package it.unibo.api.doors;
 
-import it.unibo.api.rooms.Room;
 
 /**
  * a basic door
@@ -23,7 +22,7 @@ public interface Door {
      * gets the room that the door brings to
      * @return the room on the other side of the door
      */
-    Room getDstRoom();
+    String getDstRoomId();
 
     /**
      * opens the door. 

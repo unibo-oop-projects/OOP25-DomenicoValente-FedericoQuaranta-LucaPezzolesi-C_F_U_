@@ -1,5 +1,6 @@
 package it.unibo.api.rooms;
 
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.api.Position;
@@ -54,7 +55,7 @@ public interface RoomManager {
      * if the door is open enter to the next door
      * @param posDoor to ghet the obj door
      */
-    void enterDoor(final Position posDoor);
+    void enterDoor(final Position posDoor,  final List<Room> rooms);
 
     /**
      * gets the current player position

@@ -38,10 +38,7 @@
     : correctOption: Seconda
       id: log_02
       key: !!it.unibo.impl.templates.KeyTemplate
-        dst: !!it.unibo.impl.DoorImpl
-          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
-          id: door_3_to_end
-          open: false
+        dst: !!it.unibo.impl.DoorImpl {id: door_3_to_end, open: false}
         id: key_gold
         name: Chiave d'oro
       options: [Prima, Seconda, Terza, Penultima]
@@ -65,10 +62,7 @@
     : correctOption: Pila
       id: inf_02
       key: !!it.unibo.impl.templates.KeyTemplate
-        dst: !!it.unibo.impl.DoorImpl
-          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
-          id: door2_to_3
-          open: false
+        dst: !!it.unibo.impl.DoorImpl {id: door2_to_3, open: false}
         id: key_silver
         name: Chiave d'argento
       options: [Coda, Lista, Pila, Albero]
@@ -106,10 +100,7 @@
     : correctOption: '20'
       id: mat_01
       key: !!it.unibo.impl.templates.KeyTemplate
-        dst: !!it.unibo.impl.DoorImpl
-          dstRoom: !!it.unibo.impl.templates.RoomTemplate {}
-          id: door1_to_2
-          open: false
+        dst: !!it.unibo.impl.DoorImpl {id: door1_to_2, open: false}
         id: key_bronze
         name: Chiave di bronzo
       options: ['32', '20', '16', '64']
