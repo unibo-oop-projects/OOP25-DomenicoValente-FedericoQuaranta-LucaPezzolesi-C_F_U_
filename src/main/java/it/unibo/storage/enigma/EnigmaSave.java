@@ -9,6 +9,7 @@ import it.unibo.api.enigmas.Enigma;
 import it.unibo.core.GameSettings;
 import it.unibo.impl.templates.EnigmaTemplate;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -76,5 +77,10 @@ public class EnigmaSave {
      */
     public List<Enigma> getEnigmas() {
         return this.enigmas;
+    }
+
+    public void deleteFile() {
+        final File file = new File(GameSettings.ENIGMAS_YAML_FILES_DEFAULT_PATH.getValue());
+        file.delete();
     }
 }
