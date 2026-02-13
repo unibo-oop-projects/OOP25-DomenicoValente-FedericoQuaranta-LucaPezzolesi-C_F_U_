@@ -64,18 +64,13 @@ public class RoomSave {
             roomTemplate.getDoorGrid().forEach((pos, door) -> {
 
                 String dstId = door.getDstRoomId();
-
-                if(dstId != null){
-                    DataForDoor doorData = new DataForDoor(
-                        door.getId(),
-                        dstId,
-                        door.isOpen(),
-                        pos
-                    );
-                    doorDataList.put(pos, doorData);
-                }else{
-                    System.err.println("STANZA CON ID "+dstId+" NON TROVATA");
-                }
+                DataForDoor doorData = new DataForDoor(
+                    door.getId(),
+                    dstId,
+                    door.isOpen(),
+                    pos
+                );
+                doorDataList.put(pos, doorData);
             });
             dataForRooms.setDoors(doorDataList);
 
@@ -114,11 +109,6 @@ public class RoomSave {
             final Yaml yamlRead = new Yaml(new Constructor(List.class, loadOpt));
             final List<DataForRooms> rawData = yamlRead.load(fis);
 
-            if (rawData == null) {
-                System.err.println("Il file YAML è vuoto o non è stato interpretato come lista!");
-            } else {
-                System.out.println("Caricate " + rawData.size() + " voci dal file.");
-            }
 
             Optional.ofNullable(rawData).ifPresent(data -> {
                 final Map<String, RoomTemplate> registry = createRoomShells(data);

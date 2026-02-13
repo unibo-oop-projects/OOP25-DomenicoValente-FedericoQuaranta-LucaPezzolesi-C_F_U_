@@ -21,10 +21,6 @@ public class GameLauncher {
 
         final List<Room> rooms = storagSave.getRooms();
 
-        if(rooms.isEmpty()){
-            System.err.println("NO SUCH FILE YAML");
-        }
-
         //config
         final Room startRoom = rooms.get(1);
         final Player player = new PlayerImpl(new Position(1, 1));

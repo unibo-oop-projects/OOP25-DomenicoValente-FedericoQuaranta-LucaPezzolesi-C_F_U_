@@ -61,7 +61,6 @@ public class KeyTemplate implements Key, java.io.Serializable {
     @Override
     public void openDoor() {
         this.dst.setOpen(true);
-        System.out.println(dst.getId() + "è aperta: " + dst.isOpen());
     }
     
     @Override

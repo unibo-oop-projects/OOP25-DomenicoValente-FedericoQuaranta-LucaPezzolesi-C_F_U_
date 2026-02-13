@@ -92,8 +92,6 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
                 
                 // Prendo l'ID e tolgo eventuali spazi vuoti iniziali/finali
                 String targetRoomId = this.currentRoom.getDoor(posDoor).getDstRoomId().trim();
-                System.out.println("DEBUG: Toccata porta verso -> '" + targetRoomId + "'");
-                
                 Room nextRoom = null;    
                 
                 // 2. Cerco la stanza nella lista usando .equals()
@@ -105,16 +103,8 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
                 }
                 
                 // 3. Entro nella stanza se l'ho trovata
-                if (nextRoom != null) {
-                    System.out.println("DEBUG: Stanza trovata! Cambio stanza...");
-                    enterNextRoom(nextRoom);
-                    computeMove(true, new Position(1, 1));
-                } else {
-                    System.err.println("ERRORE: La stanza '" + targetRoomId + "' non esiste nella lista!");
-                }
-                
-            } else {
-                System.out.println("DEBUG: Hai toccato la porta, ma è CHIUSA!");
+                enterNextRoom(nextRoom);
+                computeMove(true, new Position(1, 1));   
             }
         }
     }
