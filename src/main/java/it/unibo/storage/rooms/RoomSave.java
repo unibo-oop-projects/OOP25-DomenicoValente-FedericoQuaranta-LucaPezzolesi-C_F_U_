@@ -105,7 +105,7 @@ public class RoomSave {
         final TagInspector tagInsp = t -> t.getClassName().startsWith("it.unibo");
         loadOpt.setTagInspector(tagInsp);
 
-        try(final InputStream fis = RoomSave.class.getResourceAsStream("/rooms.yml")) {
+        try(final InputStream fis = RoomSave.class.getResourceAsStream(GameSettings.ROOM_YAML_FILES_DEFAULTPATH.getValue())) {
             final Yaml yamlRead = new Yaml(new Constructor(List.class, loadOpt));
             final List<DataForRooms> rawData = yamlRead.load(fis);
 
