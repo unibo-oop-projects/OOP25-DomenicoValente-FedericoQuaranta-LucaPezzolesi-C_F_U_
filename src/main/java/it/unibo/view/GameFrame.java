@@ -39,6 +39,11 @@ public class GameFrame extends JFrame implements View {
     private Controller controller;
 
     /**
+     * flag for endgame
+     */
+    private boolean endGameShown;
+
+    /**
      * constructor
      * @param room the room shown
      * @param playerPosition the positon of the player
@@ -51,6 +56,7 @@ public class GameFrame extends JFrame implements View {
         setResizable(false);  
         setLayout(new BorderLayout());         
 
+        endGameShown = false;
         this.gamePanel = new GamePanel(room, playerPosition, controller);
         this.gamePanel.setPreferredSize(new Dimension(800, 600));
         add(gamePanel, BorderLayout.CENTER);
@@ -65,10 +71,13 @@ public class GameFrame extends JFrame implements View {
 
     @Override
     public void updateView(Room room, Position position, Optional<Enigma> enigma){
-        if(room.getId().equals("room_finish")) { 
+        if(room.getId().equals("room_finish") && !endGameShown) { 
+            endGameShown = true;
             JOptionPane.showMessageDialog(null, "end game");
             RoomManagerStorage.deleteSave();
             dispose();
+            System.exit(1);
+            return;
         }
         gamePanel.setRoom(room);
         gamePanel.setPlayerPosition(position);

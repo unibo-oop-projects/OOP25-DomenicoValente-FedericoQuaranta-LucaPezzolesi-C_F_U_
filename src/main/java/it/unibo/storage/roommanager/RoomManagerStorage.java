@@ -70,6 +70,9 @@ public class RoomManagerStorage {
         }
     }
 
+    /**
+     * delete the save
+     */
     public static void deleteSave() {
         File file = new File(FILENAME);
         if (file.exists()) {

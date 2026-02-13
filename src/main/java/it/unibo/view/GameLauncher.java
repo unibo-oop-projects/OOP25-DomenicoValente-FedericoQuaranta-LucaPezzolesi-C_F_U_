@@ -27,8 +27,8 @@ public class GameLauncher {
     /**
      * the main to start the game
      * @param args unused
-     * @throws IOException 
-     * @throws ClassNotFoundException 
+     * @throws IOException if an I/O error occurs while reading the file
+     * @throws ClassNotFoundException if class not found
      */
     public static void main(String[] args) throws ClassNotFoundException, IOException {
         //load world
