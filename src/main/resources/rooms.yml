@@ -21,28 +21,29 @@
       id: inf_03
       key: null
       options: [RAM, ROM, SSD, HDD]
-      question: Quale di questi tipi di memoria è volatile?
+      question: Which of this memory types is volatile?
     ? {x: 13.0, y: 13.0}
     : correctOption: main()
       id: inf_04
       key: null
       options: [start(), run(), main(), init()]
-      question: Qual è il metodo che indica punto di ingresso in un'applicazione Java?
+      question: What is the method that indicates the entry point in a Java application?
     ? {x: 3.0, y: 8.0}
     : correctOption: '32'
       id: mat_03
       key: null
       options: ['10', '25', '32', '64']
-      question: Quanto fa 2^5?
+      question: WHat is 2^5?
     ? {x: 9.0, y: 2.0}
-    : correctOption: Seconda
+    : correctOption: Second
       id: log_02
       key: !!it.unibo.impl.templates.KeyTemplate
         dst: !!it.unibo.impl.DoorImpl {id: door_3_to_end, open: false}
         id: key_gold
         name: Chiave d'oro
-      options: [Prima, Seconda, Terza, Penultima]
-      question: se durante una gara superi il secondo, in che posizione ti trovi?
+      options: [First, Second, Third, Last]
+      question: If you overtake the person in the second place in a race, what position
+        are you in?
   id: room_3
   size: 15
 - !!it.unibo.storage.rooms.DataForRooms
@@ -59,27 +60,27 @@
       positionDoor: *id004
   enigmas:
     ? {x: 5.0, y: 10.0}
-    : correctOption: Pila
+    : correctOption: Stack
       id: inf_02
       key: !!it.unibo.impl.templates.KeyTemplate
         dst: !!it.unibo.impl.DoorImpl {id: door2_to_3, open: false}
         id: key_silver
         name: Chiave d'argento
-      options: [Coda, Lista, Pila, Albero]
-      question: Quale struttura dati segue il principio LIFO?
+      options: [Queue, List, Stack, Tree]
+      question: Which of these data structures follows the LIFO principle?
     ? {x: 11.0, y: 3.0}
     : correctOption: '17'
       id: mat_02
       key: null
       options: ['9', '15', '17', '21']
-      question: Quale tra i seguenti numeri è un numero primo?
+      question: Which of this numbers is a prime number?
     ? {x: 1.0, y: 11.0}
     : correctOption: Maria
       id: log_01
       key: null
       options: [Nunu, Nina, Anna, Maria]
-      question: 'Il padre di Maria ha 5 figlie: Nana, Nene, Nini, Nono. Come si chiama
-        la quinta?'
+      question: 'Maria''s father has five daughters: Nana, Nene, Nini, and Nina. What''s
+        the fifth one''s name?'
   id: room_2
   size: 15
 - !!it.unibo.storage.rooms.DataForRooms
@@ -95,7 +96,7 @@
       id: inf_01
       key: null
       options: ['10', '12', '101', '20']
-      question: A quanto equivale 1010 in base decimale?
+      question: '1010 in decimal base equals to:'
     ? {x: 1.0, y: 11.0}
     : correctOption: '20'
       id: mat_01
@@ -104,6 +105,6 @@
         id: key_bronze
         name: Chiave di bronzo
       options: ['32', '20', '16', '64']
-      question: Quanto fa 4 + 4 * 4?
+      question: What is 4 + 4 * 4?
   id: start_room
   size: 15

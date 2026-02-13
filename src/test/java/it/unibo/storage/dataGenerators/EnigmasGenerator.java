@@ -41,7 +41,7 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "inf_01", 
             null, 
-            "A quanto equivale 1010 in base decimale?", 
+            "1010 in decimal base equals to:", 
             List.of("10", "12", "101", "20"), 
             "10"
         ));
@@ -49,15 +49,15 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "inf_02", 
             null, 
-            "Quale struttura dati segue il principio LIFO?", 
-            List.of("Coda", "Lista", "Pila", "Albero"), 
-            "Pila"
+            "Which of these data structures follows the LIFO principle?", 
+            List.of("Queue", "List", "Stack", "Tree"), 
+            "Stack"
         ));
 
         list.add(new EnigmaTemplate(
             "inf_03", 
             null, 
-            "Quale di questi tipi di memoria è volatile?", 
+            "Which of this memory types is volatile?", 
             List.of("RAM", "ROM", "SSD", "HDD"),
             "RAM"
         ));
@@ -65,7 +65,7 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "inf_04", 
             null, 
-            "Qual è il metodo che indica punto di ingresso in un'applicazione Java?", 
+            "What is the method that indicates the entry point in a Java application?", 
             List.of("start()", "run()", "main()", "init()"), 
             "main()"
         ));
@@ -76,7 +76,7 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "mat_01", 
             null, 
-            "Quanto fa 4 + 4 * 4?", 
+            "What is 4 + 4 * 4?", 
             List.of("32", "20", "16", "64"), 
             "20"
         ));
@@ -84,7 +84,7 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "mat_02", 
             null, 
-            "Quale tra i seguenti numeri è un numero primo?", 
+            "Which of this numbers is a prime number?", 
             List.of("9", "15", "17", "21"), 
             "17"
         ));
@@ -92,7 +92,7 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "mat_03", 
             null, 
-            "Quanto fa 2^5?", 
+            "WHat is 2^5?", 
             List.of("10", "25", "32", "64"), 
             "32"
         ));
@@ -103,7 +103,7 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "log_01", 
             null, 
-            "Il padre di Maria ha 5 figlie: Nana, Nene, Nini, Nono. Come si chiama la quinta?", 
+            "Maria's father has five daughters: Nana, Nene, Nini, and Nina. What's the fifth one's name?", 
             List.of("Nunu", "Nina", "Anna", "Maria"), 
             "Maria"
         ));
@@ -111,9 +111,9 @@ public class EnigmasGenerator {
         list.add(new EnigmaTemplate(
             "log_02", 
             null, 
-            "se durante una gara superi il secondo, in che posizione ti trovi?", 
-            List.of("Prima", "Seconda", "Terza", "Penultima"), 
-            "Seconda"
+            "If you overtake the person in the second place in a race, what position are you in?", 
+            List.of("First", "Second", "Third", "Last"), 
+            "Second"
         ));
     }
 }
