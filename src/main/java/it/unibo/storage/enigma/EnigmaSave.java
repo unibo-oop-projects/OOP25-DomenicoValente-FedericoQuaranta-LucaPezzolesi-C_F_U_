@@ -79,6 +79,9 @@ public class EnigmaSave {
         return this.enigmas;
     }
 
+    /**
+     * deletes the file
+     */
     public void deleteFile() {
         final File file = new File(GameSettings.ENIGMAS_YAML_FILES_DEFAULT_PATH.getValue());
         file.delete();
