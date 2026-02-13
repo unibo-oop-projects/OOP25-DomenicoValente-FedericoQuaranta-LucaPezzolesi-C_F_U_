@@ -95,7 +95,7 @@ public class GameEngine implements Controller {
      */
     private Optional<Enigma> update(double elapsed, Vector2D v2d) {
         Position currentPosition = model.getCurrentPosition();
-        Position nextPosition = currentPosition.sum(v2d.mul(4*elapsed));
+        Position nextPosition = currentPosition.sum(v2d.mul(1*elapsed));
         int xFloor = (int) Math.floor(nextPosition.getX());
         int yFloor = (int) Math.floor(nextPosition.getY());
         int xCeil = (int) Math.ceil(nextPosition.getX());

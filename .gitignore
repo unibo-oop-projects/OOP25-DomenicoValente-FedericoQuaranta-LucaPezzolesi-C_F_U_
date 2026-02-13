@@ -15,3 +15,6 @@ bin/
 
 # Ignore vscode directory
 .vscode/*
+
+# Ignore binary file
+.dat

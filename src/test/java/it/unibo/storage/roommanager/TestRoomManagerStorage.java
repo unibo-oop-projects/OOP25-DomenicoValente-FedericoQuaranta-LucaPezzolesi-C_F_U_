@@ -8,11 +8,10 @@ import it.unibo.impl.templates.RoomTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.jupiter.api.AfterEach;
@@ -28,6 +27,7 @@ public class TestRoomManagerStorage {
 
     @BeforeEach
     void initializeTest() {
+        new File("roommanagersave.dat").delete();
         model = new RoomManagerImpl(new PlayerImpl(new Position(0, 0)));
         model.enterNextRoom(new RoomTemplate("id"));
         Inventory.addKey(new KeyTemplate());
@@ -36,13 +36,14 @@ public class TestRoomManagerStorage {
 
     @AfterEach
     void cleanup() {
-        new File("./src/main/resources/roommanager.save.dat").delete();
+        new File("roommanagersave.dat").delete();
     }
 
     @Test
     void testSave() throws IOException, ClassNotFoundException {
         RoomManagerStorage.save(model);
-        File file = new File("./src/main/resources/roommanager.save.dat");
+        System.out.println("Salvataggio in corso in: " + new File("roommanagersave.dat").getAbsolutePath());
+        File file = new File("roommanagersave.dat");
         assertTrue(file.exists());
         RoomManager loaded = RoomManagerStorage.load();
         assertNotNull(loaded);
@@ -52,6 +53,8 @@ public class TestRoomManagerStorage {
 
     @Test
     void testLoadWithoutFile() throws IOException, ClassNotFoundException {
-        assertThrows(FileNotFoundException.class , () -> RoomManagerStorage.load());
+        RoomManagerStorage.deleteSave();
+        RoomManager loaded = RoomManagerStorage.load();
+        assertNull(loaded);
     }
 }

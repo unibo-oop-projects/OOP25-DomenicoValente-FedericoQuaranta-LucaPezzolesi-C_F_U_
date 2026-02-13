@@ -15,6 +15,7 @@ import it.unibo.api.rooms.Room;
 import it.unibo.impl.Inventory;
 import it.unibo.input.Controller;
 import it.unibo.input.StopMovement;
+import it.unibo.storage.roommanager.RoomManagerStorage;
 
 /**
  * Main window of the game application.
@@ -64,8 +65,9 @@ public class GameFrame extends JFrame implements View {
 
     @Override
     public void updateView(Room room, Position position, Optional<Enigma> enigma){
-        if(room.getId() == "room_finish") { 
+        if(room.getId().equals("room_finish")) { 
             JOptionPane.showMessageDialog(null, "end game");
+            RoomManagerStorage.deleteSave();
             dispose();
         }
         gamePanel.setRoom(room);

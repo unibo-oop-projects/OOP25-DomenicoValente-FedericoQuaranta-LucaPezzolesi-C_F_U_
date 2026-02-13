@@ -1,5 +1,6 @@
 package it.unibo.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import it.unibo.api.player.Player;
 import it.unibo.api.rooms.Room;
 import it.unibo.api.rooms.RoomCellsValues;
 import it.unibo.api.rooms.RoomManager;
+import it.unibo.storage.roommanager.RoomManagerStorage;
 
 /**
  * implementation of {@link RoomManager} 
@@ -37,6 +39,11 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
     @Override
     public void enterNextRoom(Room nextRoom) {
         this.currentRoom = nextRoom;
+        try {
+            RoomManagerStorage.save(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -103,8 +110,8 @@ public class RoomManagerImpl implements RoomManager, java.io.Serializable {
                 }
                 
                 // 3. Entro nella stanza se l'ho trovata
-                enterNextRoom(nextRoom);
-                computeMove(true, new Position(1, 1));   
+                computeMove(true, new Position(1, 1));
+                enterNextRoom(nextRoom);   
             }
         }
     }
