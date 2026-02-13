@@ -13,25 +13,22 @@ import it.unibo.storage.enigma.EnigmaSave;
 
 public class EnigmasGenerator {
 
-    public static void main(String[] args) {
-        
-        List<Enigma> enigmasToSave = new ArrayList<>();
-        populateList(enigmasToSave);
-        
-        final EnigmaSave storage = new EnigmaSave();
-        storage.saveEnigmas(enigmasToSave);
-    }
-
-
     @Test
     void testFileContent() {
-        List<Enigma> checkList = new ArrayList<>();
+        final List<Enigma> checkList = new ArrayList<>();
         populateList(checkList);
         final EnigmaSave storage = new EnigmaSave();
 
+        storage.saveEnigmas(checkList);
+
+        try {
+            Thread.sleep(300);
+        } catch (final Exception e) {}
         storage.loadEnigmas();
 
         assertEquals(checkList, storage.getEnigmas());
+
+        storage.deleteFile();
     }
 
     private static void populateList(final List<Enigma> list) {
