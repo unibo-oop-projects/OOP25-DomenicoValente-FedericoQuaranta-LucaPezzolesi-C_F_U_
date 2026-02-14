@@ -17,4 +17,4 @@ bin/
 .vscode/*
 
 # Ignore binary file
-.dat
+*.dat
