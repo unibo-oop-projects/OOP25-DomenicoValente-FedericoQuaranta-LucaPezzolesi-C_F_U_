@@ -121,29 +121,20 @@ public class RoomSave {
             //searches from user's saves
             final File userSave = new File(GameSettings.ROOM_YAML_FILES_NAME.getValue());
             if(userSave.exists()) {
-                System.out.println("loading resources from " + userSave.getAbsolutePath());
                 inputStream = new FileInputStream(userSave);
             }
 
             //if the file does not exist -> searches from Jar
             if(inputStream == null) {
-                inputStream = getClass().getResourceAsStream("/" + GameSettings.ROOM_YAML_FILES_NAME.getValue());                
-                if(inputStream != null) {
-                    System.out.println("loading resources from " + GameSettings.ROOM_YAML_FILES_NAME.getValue());
-                } 
+                inputStream = getClass().getResourceAsStream("/" + GameSettings.ROOM_YAML_FILES_NAME.getValue());
             }
                     
             //if the user file does not exist and the Jar file is not updated -> searches from the default ide path (src/main/resources/)
             if(inputStream == null) {
                 File ideFile = new File(FILE_PATH);
                 if(ideFile.exists()) {
-                    System.out.println("loading resources from " + FILE_PATH);
                     inputStream = new FileInputStream(ideFile);
                 }
-            }
-
-            if(inputStream == null) {
-                throw new IOException("File loading error: " + FILE_PATH + " does not exist");
             }
 
             //MIO
