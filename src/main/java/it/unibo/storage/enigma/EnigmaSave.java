@@ -66,7 +66,6 @@ public class EnigmaSave {
             //searches from user's saves
             final File userSave = new File(GameSettings.ENIGMAS_YAML_FILE_NAME.getValue());
             if(userSave.exists()) {
-                System.out.println("loading resources from " + userSave.getAbsolutePath());
                 is = new FileInputStream(userSave);
             }
 
@@ -74,7 +73,6 @@ public class EnigmaSave {
             if(is == null) {
                 is = getClass().getResourceAsStream("/" + GameSettings.ENIGMAS_YAML_FILE_NAME.getValue());                
                 if(is != null) {
-                    System.out.println("loading resources from " + GameSettings.ENIGMAS_YAML_FILE_NAME.getValue());
                 } 
             }
                     
@@ -82,7 +80,6 @@ public class EnigmaSave {
             if(is == null) {
                 File ideFile = new File(FILE_PATH);
                 if(ideFile.exists()) {
-                    System.out.println("loading resources from " + FILE_PATH);
                     is = new FileInputStream(ideFile);
                 }
             }
