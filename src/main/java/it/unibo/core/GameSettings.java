@@ -12,7 +12,7 @@ public enum GameSettings {
     ENIGMAS_YAML_FILE_NAME("enigmas.yml"),
     
     /** default path for room yml files */
-    ROOM_YAML_FILES_DEFAULTPATH("./rooms.yml");
+    ROOM_YAML_FILES_NAME("rooms.yml");
 
     private final String value;
 
