@@ -1,5 +1,6 @@
 package it.unibo.storage.rooms;
 
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -111,19 +112,29 @@ public class RoomSave {
         final TagInspector tagInsp = t -> t.getClassName().startsWith("it.unibo");
         loadOpt.setTagInspector(tagInsp);
 
-        try(final InputStream fis = RoomSave.class.getResourceAsStream(GameSettings.ROOM_YAML_FILES_DEFAULTPATH.getValue())) {
-            final Yaml yamlRead = new Yaml(new Constructor(List.class, loadOpt));
-            final List<DataForRooms> rawData = yamlRead.load(fis);
+        String path = GameSettings.ROOM_YAML_FILES_DEFAULTPATH.getValue();
+        InputStream inputStream = null;
+
+        try{
+            inputStream = RoomSave.class.getResourceAsStream(path);
+
+            if (inputStream == null) {
+                inputStream= new FileInputStream(path);
+            }
+
+            try(InputStream fis = inputStream){
+                final Yaml yamlRead = new Yaml(new Constructor(List.class, loadOpt));
+                final List<DataForRooms> rawData = yamlRead.load(fis);
 
 
-            Optional.ofNullable(rawData).ifPresent(data -> {
+                Optional.ofNullable(rawData).ifPresent(data -> {
                 final Map<String, RoomTemplate> registry = createRoomShells(data);
 
                 populateRoomsContent(data, registry);
                 this.rooms.clear();
                 this.rooms.addAll(registry.values());
-            });
-
+                });
+            }
         } catch (final Exception excep) {
             excep.printStackTrace();
         }
