@@ -3,4 +3,4 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-rootProject.name = "C_F_U_"
+rootProject.name = "OOP25-C_F_U_"
