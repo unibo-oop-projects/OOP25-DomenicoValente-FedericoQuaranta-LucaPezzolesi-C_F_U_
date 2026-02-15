@@ -23,7 +23,7 @@
 
 \section{Descrizione e requisiti}
 %
-Il videogioco “C.F.U.” si pone come obiettivo il raggiungimento dell’ambita laurea mancante del player; suddetta laurea sarà ottenibile mediante l’esplorazione del campus di Cesena nel quale si è rimasti intrappolati. Muovendosi all’interno del campus saranno reperibili oggetti che permetteranno interazioni con l’ambiente (ad es. chiavi per aprire porte).\\Per raggiungere la laurea non sarà necessario risolvere tutti gli enigmi, quella di risolverli tutti rimarrà una scelta personale.\\Gli enigmi saranno di tipo mentale (delle domande a cui dare risposta), saranno indipendenti dal resto dell’ambiente e terranno fede al corso di laurea di “ingegneria e scienze informatiche” (classe L-8 ingegneria dell’informazione e L-31 scienze e tecnologie informatiche).\\Nel momento in cui il player uscirà dall’ultima stanza gli verrà fornita la laurea col voto di conseguimento, tale voto dipenderà da quanti enigmi sono stati risolti.
+Il videogioco “C.F.U.” si pone come obiettivo il raggiungimento dell’ambita laurea mancante del player; suddetta laurea sarà ottenibile mediante l’esplorazione del campus di Cesena nel quale si è rimasti intrappolati. Muovendosi all’interno del campus saranno reperibili oggetti che permetteranno interazioni con l’ambiente (ad es. chiavi per aprire porte).\\Per raggiungere la laurea non sarà necessario risolvere tutti gli enigmi, quella di risolverli tutti rimarrà una scelta personale.
 %
 
 \subsubsection{Requisiti funzionali}
@@ -31,7 +31,7 @@ Il videogioco “C.F.U.” si pone come obiettivo il raggiungimento dell’ambit
 	\item il player deve potersi spostare nell’ambiente liberamente e interagirci in maniera funzionale(es: impossibilità di attraversamento ostacoli, salvataggio oggetti ecc..);
     \item deve essere possibile rispondere agli enigmi e poterli interrompere;
     \item deve essere presente un inventario dove verranno salvati oggetti utilizzabili per interagire con l’ambiente;
-    \item le entità devono essere graficamente diverse, a seconda anche del loro stato, utilizzando colori e forme diverse;
+
 \end{itemize}
 
 \subsubsection{Requisiti non funzionali}
@@ -42,7 +42,7 @@ Il videogioco “C.F.U.” si pone come obiettivo il raggiungimento dell’ambit
 
 \section{Modello del Dominio}
 
-Il player dovrà accedere ad un insieme di stanze (ambiente). Ogni stanza contiene enigmi e/o oggetti, con i quali il player potrà interagire, utili allo sblocco di aree precedentemente inaccessibili, avanzando nel percorso per poi trovare l’uscita. In ogni stanza saranno presenti diversi enigmi, risolvibili tramite selezione di una delle alternative proposte come risposta alla domanda dell’enigma. Non tutti gli enigmi saranno necessari per il proseguimento del percorso, ma ognuno contribuirà al risultato finale. Solo un enigma per ogni stanza conterrà una “chiave” utile per lo sblocco della stanza successiva. Una volta ottenuta questa chiave, la porta si sbloccherà automaticamente. Ottenuta l’ultima chiave si potrà uscire e verrà visualizzata la “laurea” dove sarà scritto il punteggio ottenuto, corrispondente al quantitativo relativo di enigmi completati. Sarà possibile tenere traccia del percorso fatto tramite l’inventario, dove saranno presenti le chiavi ottenute.
+Il player dovrà accedere ad un insieme di stanze (ambiente). Ogni stanza contiene enigmi e/o oggetti, con i quali il player potrà interagire, utili allo sblocco di aree precedentemente inaccessibili, avanzando nel percorso per poi trovare l’uscita. In ogni stanza saranno presenti diversi enigmi, risolvibili tramite selezione di una delle alternative proposte come risposta alla domanda dell’enigma. Non tutti gli enigmi saranno necessari per il proseguimento del percorso, ma ognuno contribuirà al risultato finale. Solo un enigma per ogni stanza conterrà una “chiave” utile per lo sblocco della stanza successiva. Una volta ottenuta questa chiave, la porta si sbloccherà automaticamente. Sarà possibile tenere traccia del percorso fatto tramite l’inventario, dove saranno presenti le chiavi ottenute.
 
 \begin{figure}[h]
     \centering
@@ -58,7 +58,7 @@ Il player dovrà accedere ad un insieme di stanze (ambiente). Ogni stanza contie
 Il videogioco segue il pattern architetturale MVC, per separare al meglio la parte logica, di gestione dell’input e dell’interfaccia grafica.
 La parte del model comprende tutte le componenti che rappresentano la logica del gioco e garantisce l’applicazione delle regole del gioco in modo corretto.
 Il Controller agisce da intermediario, coordinando la cattura dell’input con la risposta da mettere in output.
-La View si occupa esclusivamente dei meccanismi di cattura dell’input e visualizzazione dell’output. La view non dovrà dipendere né dal controller né dal model: Il gioco, in fase di debug, dovrà poter essere eseguito anche in un’interfaccia a caratteri.
+La View si occupa esclusivamente dei meccanismi di cattura dell’input e visualizzazione dell’output, per cui non dovrà dipendere né dal controller né dal model.
 
 \begin{figure}[H]
 \centering{}
@@ -172,7 +172,7 @@ Soluzione: creazione di un template comune a tutti gli enigmi che gestisce le op
     \includegraphics[width=1.2\linewidth]{img/uml_save.png}
     \caption{Problema: Nel sistema è necessario prevedere un meccanismo di salvataggio e caricamento dello stato del modello (RoomManager). \\\\ Soluzione: La soluzione adottata consiste nell’introduzione di una classe statica RoomManagerStorage, responsabile esclusivamente della persistenza dello stato del RoomManager. Essa fornisce un metodo save(), utilizzato dal metodo enterNextDoor() di RoomManager per salvare automaticamente il gioco a ogni cambio di stanza, e un metodo load(), invocato dal main all’avvio dell’applicazione per ripristinare l’ultimo stato salvato, qualora disponibile.
 }
-    \label{fig:placeholder5}
+    \label{fig:placeholder}
 \end{figure}
 
 \begin{figure}[H]
@@ -180,7 +180,7 @@ Soluzione: creazione di un template comune a tutti gli enigmi che gestisce le op
     \includegraphics[width=1.2\linewidth]{img/uml_view.png}
     \caption{Problema: Nel sistema sorge la necessità di rendere la logica di visualizzazione intercambiabile e indipendente dall'implementazione tecnologica specifica (es. Java Swing). \\\\ Soluzione: Per massimizzare la modularità e favorire l'indipendenza tecnologica, è stata introdotta l'interfaccia View, che definisce un contratto comune basato sui metodi UpdateView e SetController. L'implementazione concreta è affidata alla classe GameFrame, che realizza l'interfaccia fungendo da contenitore principale. La struttura interna segue un principio di composizione, GamePanel: gestisce la resa grafica del gioco e l'interazione con l'utente. Invece InventoryPanel: si occupa specificamente della visualizzazione dell'inventario. Questa architettura permette di sostituire l'intero blocco grafico (ad esempio passando da Swing a JavaFX) semplicemente creando una nuova classe che implementi View, senza dover modificare il controller.
 }
-    \label{fig:placeholder6}
+    \label{fig:placeholder5}
 \end{figure}
 
 \newpage
