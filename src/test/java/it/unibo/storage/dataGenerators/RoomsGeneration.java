@@ -82,7 +82,7 @@ public class RoomsGeneration {
 
         Map<Position, Enigma> enigmas3 = new HashMap<>();
 
-        Key keyGold = new KeyTemplate("key_gold", "Chiave d'oro", door3_to_end);
+        Key keyGold = new KeyTemplate("key_gold", "golden key", door3_to_end);
 
         addEnigmaToMap(enigmas3, library, "inf_03", new Position(5, 7), null);
         addEnigmaToMap(enigmas3, library, "mat_03", new Position(3, 8), null);
@@ -100,7 +100,7 @@ public class RoomsGeneration {
 
         Map<Position, Enigma> enigmas2 = new HashMap<>();
 
-        Key keySilver = new KeyTemplate("key_silver", "Chiave d'argento", door2_to_3);
+        Key keySilver = new KeyTemplate("key_silver", "silver key", door2_to_3);
        
         addEnigmaToMap(enigmas2, library, "inf_02", new Position(5, 8), keySilver);
         addEnigmaToMap(enigmas2, library, "mat_02", new Position(7, 3), null);
@@ -116,7 +116,7 @@ public class RoomsGeneration {
 
         Map<Position, Enigma> enigmas1 = new HashMap<>();
 
-        Key keyBronze = new KeyTemplate("key_bronze", "Chiave di bronzo", door1_to_2);
+        Key keyBronze = new KeyTemplate("key_bronze", "bronze key", door1_to_2);
 
         addEnigmaToMap(enigmas1, library, "inf_01", new Position(4, 4), null);
         addEnigmaToMap(enigmas1, library, "mat_01", new Position(1, 7), keyBronze);

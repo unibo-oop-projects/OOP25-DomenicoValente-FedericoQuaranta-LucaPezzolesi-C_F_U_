@@ -38,7 +38,7 @@
       id: mat_03
       key: null
       options: ['10', '25', '32', '64']
-      question: WHat is 2^5?
+      question: What is 2^5?
   id: room_3
   size: 10
 - !!it.unibo.storage.rooms.DataForRooms
