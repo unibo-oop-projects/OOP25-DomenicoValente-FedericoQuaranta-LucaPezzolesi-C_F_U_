@@ -23,7 +23,7 @@
       key: !!it.unibo.impl.templates.KeyTemplate
         dst: !!it.unibo.impl.DoorImpl {id: door_3_to_end, open: false}
         id: key_gold
-        name: Chiave d'oro
+        name: golden key
       options: [First, Second, Third, Last]
       question: If you overtake the person in the second place in a race, what position
         are you in?
@@ -55,7 +55,7 @@
       key: !!it.unibo.impl.templates.KeyTemplate
         dst: !!it.unibo.impl.DoorImpl {id: door2_to_3, open: false}
         id: key_silver
-        name: Chiave d'argento
+        name: silver key
       options: [Queue, List, Stack, Tree]
       question: Which of these data structures follows the LIFO principle?
     ? {x: 7.0, y: 3.0}
@@ -93,7 +93,7 @@
       key: !!it.unibo.impl.templates.KeyTemplate
         dst: !!it.unibo.impl.DoorImpl {id: door1_to_2, open: false}
         id: key_bronze
-        name: Chiave di bronzo
+        name: bronze key
       options: ['32', '20', '16', '64']
       question: What is 4 + 4 * 4?
   id: start_room

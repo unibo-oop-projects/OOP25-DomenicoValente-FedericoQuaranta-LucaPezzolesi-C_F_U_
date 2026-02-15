@@ -39,7 +39,7 @@
   id: mat_03
   key: null
   options: ['10', '25', '32', '64']
-  question: WHat is 2^5?
+  question: What is 2^5?
 - !!it.unibo.storage.enigma.DataForEnigmas
   correctOption: Maria
   id: log_01
