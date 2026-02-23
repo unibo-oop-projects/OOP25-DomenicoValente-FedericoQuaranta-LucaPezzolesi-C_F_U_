@@ -57,7 +57,7 @@ public class GameFrame extends JFrame implements View {
         int height = (int)(screenSize.height * 0.6);
         setSize(width, height);            
         setLocationRelativeTo(null);    
-        setResizable(true);  
+        setResizable(false);  
         setLayout(new BorderLayout());         
 
         endGameShown = false;
