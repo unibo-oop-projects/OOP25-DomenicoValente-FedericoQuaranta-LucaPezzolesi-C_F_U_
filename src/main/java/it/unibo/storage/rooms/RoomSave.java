@@ -2,8 +2,6 @@ package it.unibo.storage.rooms;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -53,60 +51,6 @@ public class RoomSave {
         return new ArrayList<>(this.rooms);
     }
 
-    /**
-     * serializes the porvided list of rooms and saves them to the file YAML "rooms.yml"
-     * @param list the list of rooms to be saved
-     */
-    public void save(final List<Room> list){
-        final List<DataForRooms> rooms = new ArrayList<>();
-
-        list.stream().forEach(r->{
-            final RoomTemplate roomTemplate = (RoomTemplate) r;
-            final DataForRooms dataForRooms = new DataForRooms();
-
-            dataForRooms.setId(roomTemplate.getId());
-            dataForRooms.setSize(roomTemplate.getSize());
-
-            Map<Position, DataForDoor> doorDataList = new HashMap<>();
-            roomTemplate.getDoorGrid().forEach((pos, door) -> {
-
-                String dstId = door.getDstRoomId();
-                DataForDoor doorData = new DataForDoor(
-                    door.getId(),
-                    dstId,
-                    door.isOpen(),
-                    pos
-                );
-                doorDataList.put(pos, doorData);
-            });
-            dataForRooms.setDoors(doorDataList);
-
-            Map<Position, DataForEnigmas> enigmaDataList = new HashMap<>();
-            roomTemplate.getEnigmaGrid().forEach((pos, enigma) -> {
-                DataForEnigmas ed = new DataForEnigmas(
-                    enigma.getId(), 
-                    enigma.getQuestion(), 
-                    enigma.getCorrectOption(), 
-                    enigma.getOptions(), 
-                    enigma.getKey().orElse(null)
-                    
-                );
-                enigmaDataList.put(pos, ed);
-            });
-            dataForRooms.setEnigmas(enigmaDataList);
-
-            rooms.add(dataForRooms);
-        });
-
-        final Yaml yamlWrite = new Yaml();
-        try(FileWriter fw = new FileWriter(GameSettings.ROOM_YAML_FILES_NAME.getValue())) {
-            yamlWrite.dump(rooms, fw);
-        } catch (IOException excep) {
-            excep.printStackTrace();
-        }
-
-    }
-    
     /**
      * loads and parses room data from the file YAML "rooms.yml"
      */

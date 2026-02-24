@@ -3,6 +3,7 @@ package it.unibo.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Optional;
 
 import javax.swing.JFrame;
@@ -51,18 +52,21 @@ public class GameFrame extends JFrame implements View {
     public GameFrame(Room room, Position playerPosition) {
         setTitle("C. F. U.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 600);            
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int)(screenSize.width * 0.6);
+        int height = (int)(screenSize.height * 0.6);
+        setSize(width, height);            
         setLocationRelativeTo(null);    
         setResizable(false);  
         setLayout(new BorderLayout());         
 
         endGameShown = false;
         this.gamePanel = new GamePanel(room, playerPosition, controller);
-        this.gamePanel.setPreferredSize(new Dimension(800, 600));
         add(gamePanel, BorderLayout.CENTER);
 
         this.inventoryPanel = new InventoryPanel();
-        inventoryPanel.setPreferredSize(new Dimension(200, 600));
+        int invWidth = (int)(width * 0.2);
+        inventoryPanel.setPreferredSize(new Dimension(invWidth, height));
         inventoryPanel.setBackground(Color.DARK_GRAY);
         add(inventoryPanel, BorderLayout.EAST);
 
